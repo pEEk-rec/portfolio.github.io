@@ -3,61 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Team Globalia - Smart City Project</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #2e7d32;
+        }
+
+        header {
+            background-color: #a5d6a7;
+            color: #1b5e20;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+
+        .team-list {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            background: #f1f8e9;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 30%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: scale(1.05);
+        }
+
+        .team-member h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .team-member p {
+            margin: 10px 0;
+        }
+
+        .button-container {
+            margin-top: 15px;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #81c784;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #66bb6a;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1b5e20;
+            color: white;
+        }
+
+        footer a {
+            color: #c8e6c9;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Hello, I'm [Your Name] 👋</h1>
-        <p>I am passionate about technology and problem-solving. Here's a glimpse of my work:</p>
-    </header>
+
+<header>
+    <h1>Team Globalia</h1>
+</header>
+
+<div class="container">
+    <section>
+        <h2>Introduction</h2>
+        <p>
+            Welcome to the portfolio of Team Globalia, part of the Smart City Project in Goa. Our work integrates advanced algorithms with sustainable solutions to address real-world challenges.
+        </p>
+    </section>
 
     <section>
-        <h2>🛠️ Projects</h2>
-        <ul>
-            <li><strong>Project 1</strong>: A short description of your project1.</li>
-            <li><strong>Project 2</strong>: A short description of another project2.</li>
-        </ul>
+        <h2>Team Members</h2>
+        <div class="team-list">
+            <div class="team-member">
+                <h3>Darshan Amarshetty</h3>
+                <p><strong>USN:</strong> 01FE23BCS043</p>
+                <p><strong>Portfolio:</strong> Transportation</p>
+                <div class="button-container">
+                    <a href="./Darshan_CourseReflection.html" class="button">Course Reflection</a>
+                    <a href="./Darshan_BusinessCase.html" class="button">Business Case</a>
+                </div>
+                <p>
+                    <a href="https://github.com/darshan-globalia" class="button">GitHub</a>
+                    <a href="https://linkedin.com/in/darshan-amarshetty" class="button">LinkedIn</a>
+                </p>
+            </div>
 
-        <h2>🚀 Skills</h2>
-        <ul>
-            <li>C++, Python, JavaScript</li>
-            <li>Data Structures and Algorithms</li>
-            <li>Web Development (React.js, Node.js)</li>
-        </ul>
+            <div class="team-member">
+                <h3>Avanthika G Shirol</h3>
+                <p><strong>USN:</strong> 01FE23BCS052</p>
+                <p><strong>Portfolio:</strong> Cultural Heritage</p>
+                <div class="button-container">
+                    <a href="./Avanthika_CourseReflection.html" class="button">Course Reflection</a>
+                    <a href="./Avanthika_BusinessCase.html" class="button">Business Case</a>
+                </div>
+                <p>
+                    <a href="https://github.com/avanthika-globalia" class="button">GitHub</a>
+                    <a href="https://linkedin.com/in/avanthika-shirol" class="button">LinkedIn</a>
+                </p>
+            </div>
 
-        <h2>🌐 Find Me Online</h2>
-        <ul>
-            <li><a href="https://github.com/your-github-username" target="_blank">GitHub</a></li>
-            <li><a href="https://linkedin.com/in/your-linkedin-profile" target="_blank">LinkedIn</a></li>
-        </ul>
-
-        <h2>Portfolio Topic</h2>
-        <dl>
-            <dt>Course Name</dt>
-            <dd>Algorithmic Problem Solving</dd>
-
-            <dt>Course Code</dt>
-            <dd>Course Code Placeholder</dd>
-
-            <dt>Name</dt>
-            <dd>Your Name</dd>
-
-            <dt>SRN</dt>
-            <dd>Your SRN</dd>
-
-            <dt>Course Instructor</dt>
-            <dd>Instructor Name Placeholder</dd>
-
-            <dt>University</dt>
-            <dd>Your University Name</dd>
-
-            <dt>Portfolio Topic/Domain</dt>
-            <dd>Google</dd>
-        </dl>
-
-        <blockquote>“The only way to do great work is to love what you do.” – Steve Jobs</blockquote>
+            <div class="team-member">
+                <h3>Prateek Joshi</h3>
+                <p><strong>USN:</strong> 01FE23BCS065</p>
+                <p><strong>Portfolio:</strong> Tidal Energy</p>
+                <div class="button-container">
+                    <a href="./Prateek_CourseReflection.html" class="button">Course Reflection</a>
+                    <a href="./Prateek_BusinessCase.html" class="button">Business Case</a>
+                </div>
+                <p>
+                    <a href="https://github.com/prateek-globalia" class="button">GitHub</a>
+                    <a href="https://linkedin.com/in/prateek-joshi" class="button">LinkedIn</a>
+                </p>
+            </div>
+        </div>
     </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 Team Globalia | <a href="https://github.com/team-globalia">Visit Our GitHub Repository</a></p>
+</footer>
+
 </body>
 </html>
