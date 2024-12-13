@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithms and Data Structures Overview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .highlight {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Algorithms and Data Structures Overview</h1>
+
+    <div class="section">
+        <h2>Iteration vs Recursion vs Backtracking</h2>
+        <p><strong>Iteration</strong> is a method used to solve problems using loops and can solve repetitive problems over time. Real-life examples include the erosion of rocks due to wind or water, day-night cycles, and animal life cycles.</p>
+        <p><strong>Recursion</strong> involves breaking a problem into smaller, self-similar tasks. Real-life examples include spider web construction, cell division, and DNA replication.</p>
+        <p><strong>Backtracking</strong> explores all possible paths to solve a problem. If one path fails, it backtracks to try a new path. Real-life examples include Sudoku, word search, ant colony behavior, and meeting scheduling.</p>
+    </div>
+
+    <div class="section">
+        <h2>Efficiency of Problem-Solving Techniques</h2>
+        <p>The efficiency of an algorithm can be measured by two factors:</p>
+        <ul>
+            <li><strong>Time Efficiency</strong>: How much time an algorithm takes relative to the input size.</li>
+            <li><strong>Space Efficiency</strong>: How much memory an algorithm uses during execution.</li>
+        </ul>
+        <p><strong>Orders of Growth</strong> help predict how an algorithm will perform as input size increases, guiding developers in choosing the right algorithm for specific problem constraints.</p>
+        <div class="highlight">
+            <p><strong>Common Orders of Growth:</strong></p>
+            <ul>
+                <li>O(1) - Constant: Example: accessing one array index.</li>
+                <li>O(n) - Linear: Example: traversing an array.</li>
+                <li>O(n^2) - Quadratic: Example: Bubble Sort.</li>
+                <li>O(log n) - Logarithmic: Example: Binary Search.</li>
+                <li>O(n log n) - Linearithmic.</li>
+                <li>O(n!) - Factorial.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Key Algorithms and Their Applications</h2>
+        <p><strong>Divide and Conquer</strong> is a widely used technique, breaking a problem into smaller subproblems and solving them independently. Examples include Merge Sort, Quick Sort, and Binary Search.</p>
+        <p><strong>Graph Algorithms</strong>: Spanning trees and shortest paths are key concepts:</p>
+        <ul>
+            <li><strong>Spanning Trees</strong> connect all nodes without cycles and with the fewest edges. Important for network design, like power grids and transportation systems.</li>
+            <li><strong>Shortest Path Algorithms</strong>: Find the quickest route between two points, important for navigation systems, like GPS.</li>
+        </ul>
+        <p><strong>Shortest Path Algorithms</strong> examples:</p>
+        <ul>
+            <li>Dijkstra's Algorithm: Finds the shortest path in graphs with positive edge weights.</li>
+            <li>Floyd’s Algorithm: Finds shortest paths between all pairs of nodes.</li>
+            <li>Bellman-Ford Algorithm: Handles negative edge weights.</li>
+            <li>Warshall’s Algorithm: Uses bitwise operations to find shortest paths.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Data Structures in Real-Time Applications</h2>
+        <p><strong>Trees</strong> represent hierarchical data, like file systems, and are used in databases, routing algorithms, and binary search.</p>
+        <p><strong>Graphs</strong> are more general and are used to represent relationships in social networks, navigation systems, and recommendation engines.</p>
+        <p><strong>Applications of Trees:</strong> File Systems, Binary Search Trees, Routing Algorithms.</p>
+        <p><strong>Applications of Graphs:</strong> Social Networks, Navigation, Web Crawling, Recommendation Systems.</p>
+    </div>
+
+    <div class="section">
+        <h2>Problem-Solving Strategy</h2>
+        <p>When solving a complex problem, I start by clearly understanding the problem, breaking it down into smaller tasks, and choosing the simplest approach. I recheck existing solutions for adjustments, search for repeating patterns in the data, and implement appropriate algorithms. Breaking a problem into smaller parts helps make it more manageable and helps identify the most efficient solution.</p>
+    </div>
+
+</body>
+</html>
