@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Learning Reflections</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 36px;
+        }
+
+        h2 {
+            color: #34495e;
+            font-size: 28px;
+            margin-top: 20px;
+        }
+
+        p, ul, li {
+            font-size: 16px;
+        }
+
+        ul {
+            margin: 10px 0 20px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .dropdown {
+            margin-top: 20px;
+        }
+
+        .dropdown-details {
+            cursor: pointer;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Course Learning Reflections</h1>
+    <div class="container">
+        <h2>1. What are the kinds of problems we see in nature?</h2>
+        <ul>
+            <li><strong>Iteration:</strong> Problems requiring repetitive tasks, such as calculating the sum of elements in an array or finding the factorial of a number using loops.</li>
+            <li><strong>Recursion:</strong> Problems with a smaller substructure, such as solving Tower of Hanoi, Fibonacci series, or depth-first tree traversal.</li>
+            <li><strong>Backtracking:</strong> Problems requiring exploration of all potential solutions but discarding invalid ones as soon as possible, such as solving Sudoku, the N-Queens problem, or finding all possible subsets of a set.</li>
+        </ul>
+
+        <h2>2. What is space and time efficiency? Why are they important?</h2>
+        <ul>
+            <li><strong>Space Efficiency:</strong> Refers to how much memory an algorithm uses. Efficient algorithms avoid unnecessary memory consumption, critical for systems with limited resources.</li>
+            <li><strong>Time Efficiency:</strong> Refers to how fast an algorithm executes. Algorithms that are time-efficient save computation time, crucial for large datasets or real-time systems.</li>
+        </ul>
+
+        <h2>3. Hierarchical Data and Tree Data Structures</h2>
+        <p>Tree data structures solve hierarchical problems by organizing data in parent-child relationships:</p>
+        <ul>
+            <li><strong>Binary Search Tree (BST):</strong> Efficient for searching, insertion, and deletion (O(logn) average).</li>
+            <li><strong>AVL Tree:</strong> Self-balancing BST ensures height balance.</li>
+            <li><strong>2-3 Trees &amp; Red-Black Trees:</strong> Used in databases for maintaining balance.</li>
+            <li><strong>Heap:</strong> Used for priority queues.</li>
+            <li><strong>Trie:</strong> Optimizes searching for strings in dictionaries or autocomplete systems.</li>
+        </ul>
+
+        <h2>4. Need for Array Query Algorithms and Their Applications</h2>
+        <ul>
+            <li><strong>Algorithms:</strong> Segment Trees and Fenwick Trees optimize querying and updating operations on arrays.</li>
+            <li><strong>Applications:</strong> Range queries in competitive programming, financial data analysis, and gaming.</li>
+        </ul>
+
+        <h2>5. Differentiate Between Trees and Graphs and Their Traversals</h2>
+        <ul>
+            <li><strong>Trees:</strong>
+                <ul>
+                    <li>Acyclic, connected graph with a hierarchical structure.</li>
+                    <li><strong>Traversals:</strong> Preorder, Inorder, Postorder, Level-order.</li>
+                    <li><strong>Applications:</strong> File systems, expression parsing.</li>
+                </ul>
+            </li>
+            <li><strong>Graphs:</strong>
+                <ul>
+                    <li>Nodes connected by edges, can be cyclic or acyclic.</li>
+                    <li><strong>Traversals:</strong> Depth-First Search (DFS), Breadth-First Search (BFS).</li>
+                    <li><strong>Applications:</strong> Social networks, shortest path problems.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>6. Sorting and Searching Algorithms and Their Real-World Applications</h2>
+        <ul>
+            <li><strong>Sorting Algorithms:</strong> Arrange data for faster access. Example: Merge Sort for external sorting of large datasets.</li>
+            <li><strong>Searching Algorithms:</strong> Locate elements efficiently. Example: Binary Search in dictionaries.</li>
+        </ul>
+
+        <h2>7. Importance of Graph Algorithms (Spanning Trees &amp; Shortest Paths)</h2>
+        <ul>
+            <li><strong>Spanning Trees:</strong> Used in network design (Kruskal’s and Prim’s Algorithms).</li>
+            <li><strong>Shortest Path Algorithms:</strong> Applied in GPS systems, logistics, and communication networks (Dijkstra’s and Floyd-Warshall Algorithms).</li>
+        </ul>
+
+        <h2>8. How do you determine the most efficient approach when solving a complex problem?</h2>
+        <ul>
+            <li><strong>Understand the Problem:</strong> Clearly define the inputs, outputs, constraints, and objectives.</li>
+            <li><strong>Analyze Complexity:</strong> Consider the problem size and required performance (time and space complexities).</li>
+            <li><strong>Break Down the Problem:</strong> Divide it into manageable parts and identify any subproblems or overlapping substructures.</li>
+            <li><strong>Choose the Right Algorithmic Paradigm:</strong> Use Divide and Conquer, Dynamic Programming, Greedy, or Backtracking based on the problem nature.</li>
+            <li><strong>Test and Optimize:</strong> Implement a solution, analyze its performance, and refine it if needed.</li>
+        </ul>
+
+        <h2>9. Reflect on a situation where you need to balance multiple conflicting constraints in a design. What approach did you take?</h2>
+        <p>In situations involving conflicting constraints (e.g., optimizing performance while minimizing memory usage):</p>
+        <ul>
+            <li><strong>Identify and Prioritize Constraints:</strong> Determine which constraints are more critical.</li>
+            <li><strong>Use Trade-Off Analysis:</strong> Evaluate how relaxing one constraint affects others.</li>
+            <li><strong>Iterative Refinement:</strong> Implement an initial solution and iteratively improve it based on feedback or testing.</li>
+            <li><strong>Example:</strong> Designing a mobile app feature where low memory usage was critical but performance couldn't be compromised. I chose algorithms optimized for space and used caching for frequently accessed data to balance the constraints.</li>
+        </ul>
+
+        <div class="dropdown">
+            <details>
+                <summary class="dropdown-details">View Code</summary>
+                <pre>
+// Code implementation can be added here if needed
+                </pre>
+            </details>
+        </div>
+    </div>
+</body>
+</html>
