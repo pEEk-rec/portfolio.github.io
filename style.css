@@ -90,23 +90,7 @@
         .button:hover {
             background-color: #66bb6a;
         }
-<a>a button {
-    all: unset; /* Removes default styles from the button inside the <a> */
-    display: inline-block; /* Ensures button behaves like a button */
-    padding: 10px 20px; /* Add padding */
-    color: white; /* Text color */
-    background-color: #4CAF50; /* Background color */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    text-align: center; /* Center align text */
-}
 
-a button:hover {
-    background-color: #45a049; /* Change background color on hover */
-    text-decoration: none; /* No underline */
-}
-</a>
         footer {
             text-align: center;
             padding: 20px;
