@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Securing Cultural Heritage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 36px;
+        }
+
+        h2 {
+            color: #34495e;
+            font-size: 28px;
+            margin-top: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        ul {
+            margin: 10px 0 20px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .dropdown {
+            margin-top: 20px;
+        }
+
+        .dropdown-details {
+            cursor: pointer;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Securing Cultural Heritage</h1>
+    <div class="container">
+        <h2>SDG 11: Sustainable Cities and Communities</h2>
+        <ul>
+            <li><strong>Target 11.4:</strong> Strengthen efforts to protect and safeguard the world’s cultural and natural heritage.</li>
+            <li><strong>Focus:</strong> Preserving cultural heritage sites and promoting cultural diversity in urban areas.</li>
+            <li><strong>Indicator 11.4.1:</strong> Expenditure for the protection and conservation of all cultural and natural heritage.</li>
+        </ul>
+        <ul>
+            <li><strong>Target 11.7:</strong> Provide universal access to safe, inclusive, and accessible, green and public spaces, in particular for women and children, older persons, and persons with disabilities.</li>
+            <li><strong>Focus:</strong> Public spaces can be used to promote intercultural dialogue, inclusive cultural activities, and foster secular environments that are open to all.</li>
+            <li><strong>Indicator 11.7.1:</strong> Average share of the built-up area of cities that is open space.</li>
+        </ul>
+
+        <h2>SDG 9: Industry, Innovation, and Infrastructure</h2>
+        <ul>
+            <li><strong>Target 9.4:</strong> Upgrade infrastructure and retrofit industries to make them sustainable, with increased resource-use efficiency and greater adoption of clean and environmentally sound technologies and industrial processes.</li>
+            <li><strong>Focus:</strong> Sustainable tourism and cultural heritage conservation can contribute to safeguarding cultural sites while ensuring economic sustainability.</li>
+            <li><strong>Indicator 9.4.1:</strong> CO2 emission per unit of value added.</li>
+        </ul>
+
+        <h2>SDG 10: Reduced Inequality</h2>
+        <ul>
+            <li><strong>Target 10.2:</strong> Empower and promote the social, economic, and political inclusion of all.</li>
+            <li><strong>Focus:</strong> Addresses inequalities related to cultural heritage access and works towards inclusive policies that promote secularism.</li>
+            <li><strong>Indicator 10.2.1:</strong> Proportion of people living below 50% of median income, by sex, age, and persons with disabilities.</li>
+        </ul>
+
+        <h2>Graphs in Cultural Heritage Conservation</h2>
+        <p>Graphs can represent networks of connections between various entities like cultural sites, communities, and public spaces. They connect people from different cultures, promoting interaction and understanding. Dijkstra's Algorithm can be used to find the best routes for traveling between cultural sites, making tourism and public transport more efficient and accessible.</p>
+
+        <div class="dropdown">
+            <details>
+                <summary class="dropdown-details">View Code</summary>
+                <pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define s 100
+
+class Dijkstra {
+public:
+    int n, m;
+    int cost[s][s];
+    int dis[s], path[s];
+    vector&lt;int&gt; vis;
+
+    Dijkstra();
+    void read();
+    void shortest_path(int);
+    void path1();
+};
+
+Dijkstra::Dijkstra() {
+    cout &lt;&lt; "Enter number of vertices (n): ";
+    cin &gt;&gt; n;
+    cout &lt;&lt; "Enter number of edges (m): ";
+    cin &gt;&gt; m;
+}
+
+void Dijkstra::read() {
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            cost[i][j] = (i == j) ? 0 : INT_MAX;
+        }
+    }
+
+    cout &lt;&lt; "Enter the adjacency matrix (for each edge, enter the weight):\n";
+    for (int i = 0; i &lt; m; i++) {
+        int u, v, weight;
+        cin &gt;&gt; u &gt;&gt; v &gt;&gt; weight;
+        cost[u][v] = weight;
+        cost[v][u] = weight;
+    }
+
+    int src;
+    cout &lt;&lt; "Enter the source vertex: ";
+    cin &gt;&gt; src;
+
+    for (int i = 0; i &lt; n; i++) {
+        dis[i] = INT_MAX;
+        path[i] = -1;
+    }
+    dis[src] = 0;
+    vis.push_back(src);
+}
+
+void Dijkstra::shortest_path(int a) {
+    int minDist = INT_MAX, minIndex = -1;
+
+    for (int i = 0; i &lt; n; i++) {
+        if (find(vis.begin(), vis.end(), i) == vis.end() && dis[i] &lt; minDist) {
+            minDist = dis[i];
+            minIndex = i;
+        }
+    }
+
+    if (minIndex == -1) return;
+
+    vis.push_back(minIndex);
+
+    for (int i = 0; i &lt; n; i++) {
+        if (cost[minIndex][i] != INT_MAX && dis[minIndex] + cost[minIndex][i] &lt; dis[i]) {
+            dis[i] = dis[minIndex] + cost[minIndex][i];
+            path[i] = minIndex;
+        }
+    }
+
+    shortest_path(minIndex);
+}
+
+int main() {
+    Dijkstra d;
+    d.read();
+
+    cout &lt;&lt; "Shortest distances from the source vertex:\n";
+    for (int i = 0; i &lt; d.n; i++) {
+        cout &lt;&lt; "Vertex " &lt;&lt; i &lt;&lt; ": Distance = " &lt;&lt; d.dis[i] &lt;&lt; ", Path = " &lt;&lt; d.path[i] &lt;&lt; endl;
+    }
+
+    return 0;
+}
+                </pre>
+            </details>
+        </div>
+    </div>
+</body>
+</html>
