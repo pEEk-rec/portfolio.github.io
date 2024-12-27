@@ -4,131 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tidal Energy Plant - Globalia Smart City</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Applying Lexend font style */
         body {
-            font-family: 'Lexend', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        
-        /* Header Style */
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 20px;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        h1 {
-            font-size: 2.5em;
+        h2, h3, p, li {
+            color: #4CAF50; 
         }
 
-        /* Section Styling */
-        .container {
-            padding: 20px;
-        }
-
-        section {
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        h2 {
-            color: #333;
-            font-size: 2em;
-        }
-
-        h3 {
-            color: #444;
-            font-size: 1.5em;
-        }
-
-        p {
-            color: #666;
-            font-size: 1.1em;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            font-size: 1.1em;
-            margin-bottom: 8px;
-        }
-
-        /* Button Style */
-        .button-container a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            font-size: 1em;
-            border-radius: 5px;
-            margin: 5px;
-        }
-
-        .button-container a:hover {
-            background-color: #45a049;
-        }
-
-        /* Accordion Style */
-        .accordion {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            width: 100%;
-            text-align: left;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-
-        .accordion:hover {
-            background-color: #45a049;
-        }
-
-        /* Style for the dropdown content */
-        .panel {
-            padding: 0 18px;
-            display: none;
-            background-color: #f1f1f1;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-
-        /* Add some padding to the panel content */
-        .panel p {
-            padding: 10px;
-        }
-
-        /* Image Styles */
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .image-container img {
-            width: 80%;
+        #sdg-goal img {
+            width: 150px;
             height: auto;
-            border-radius: 8px;
+            margin-left: 20px;
+            vertical-align: middle;
         }
 
-        /* SDG Image */
-        .sdg-image {
-            width: 60%;
-            height: auto;
-            border-radius: 8px;
+        #sdg-goal {
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
@@ -160,11 +56,10 @@
         </section>
 
         <!-- SDG Alignment Section -->
-        <section>
-            <h2>Alignment with Sustainable Development Goals (SDG)</h2>
-            <div class="image-container">
-                <img src="Goal-11-B.jpg" alt="SDG Goal 11">
-            </div>
+    <div class="container">
+        <!-- SDG Alignment Section -->
+        <section id="sdg-goal">
+            <h2>Alignment with Sustainable Development Goals (SDG) <img src="Goal-11-B.jpg" alt="SDG Goal"></h2>
             <h3>Target 11.6:</h3>
             <p>Reduce the adverse environmental impact of cities by 2030.</p>
             <ul>
@@ -178,6 +73,11 @@
                 <li><strong>Metric:</strong> Energy coverage ratio across urban demand centers.</li>
             </ul>
         </section>
+
+        <!-- Other sections continue here... -->
+    </div>
+        
+
         
         <!-- Advantages Section -->
         <section>
@@ -227,10 +127,6 @@
         <img src="tidal_barrages.jpg" alt="Tidal Barrages" style="width: 100%; height: auto; max-width: 800px;">
     </div>
 </section>
-
-            <div class="image-container">
-                <img src="tidal_barrages.jpg" alt="Tidal Barrages">
-            </div>
             <h3>Phase 1: Location Selection</h3>
             <p>Using Merge Sort, potential sites are ranked based on tidal range, proximity to Globalia, and cost, with a weighted scoring system.</p>
             <p><strong>Example:</strong> Ranked Sites: Site B > Site A > Site C</p>
