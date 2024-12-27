@@ -4,13 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tidal Energy Plant - Globalia Smart City</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Applying Lexend font style */
         body {
-            font-family: Georgia, serif;
+            font-family: 'Lexend', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        /* Header Style */
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
         }
 
-        /* Style for the accordion button */
+        h1 {
+            font-size: 2.5em;
+        }
+
+        /* Section Styling */
+        .container {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 2em;
+        }
+
+        h3 {
+            color: #444;
+            font-size: 1.5em;
+        }
+
+        p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        /* Button Style */
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .button-container a:hover {
+            background-color: #45a049;
+        }
+
+        /* Accordion Style */
         .accordion {
             background-color: #4CAF50;
             color: white;
@@ -41,16 +112,24 @@
             padding: 10px;
         }
 
-        /* Style for code */
-        pre {
-            background-color: #2d2d2d;
-            color: #f5f5f5;
-            padding: 10px;
-            border-radius: 5px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+        /* Image Styles */
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
         }
 
+        .image-container img {
+            width: 80%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* SDG Image */
+        .sdg-image {
+            width: 60%;
+            height: auto;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -74,11 +153,18 @@
                 <li><strong>Environmental Compatibility:</strong> Tidal energy has minimal visual impact and contributes to zero-emission power production.</li>
             </ul>
             <p>For Globalia, tidal energy is a logical choice due to its proximity to the coast and the presence of estuaries, making it ideal for implementing tidal barrage technology.</p>
+            <div class="image-container">
+                <img src="tidal_plant.jpg" alt="Tidal Plant">
+            </div>
+            
         </section>
 
         <!-- SDG Alignment Section -->
         <section>
             <h2>Alignment with Sustainable Development Goals (SDG)</h2>
+            <div class="image-container">
+                <img src="Goal-11-B.jpg" alt="SDG Goal 11">
+            </div>
             <h3>Target 11.6:</h3>
             <p>Reduce the adverse environmental impact of cities by 2030.</p>
             <ul>
@@ -92,7 +178,7 @@
                 <li><strong>Metric:</strong> Energy coverage ratio across urban demand centers.</li>
             </ul>
         </section>
-
+        
         <!-- Advantages Section -->
         <section>
             <h2>Advantages of Tidal Energy</h2>
@@ -125,107 +211,131 @@
         <!-- Implementation Stage Section -->
         <section>
             <h2>Implementation Stage</h2>
+            <section id="tidal-energy">
+    <h2>Tidal Energy Power Plant Types</h2>
+    <p>There are two primary types of tidal energy plants:</p>
 
+    <ul>
+        <li><strong>Tidal Stream Power:</strong> Uses underwater turbines or floating devices to harness tidal currents. These systems work similarly to wind turbines but use the movement of water to generate energy.</li>
+        <li><strong>Tidal Range Power (Tidal Barrages):</strong> Utilizes the difference between high and low tides by constructing dams in estuaries to trap water. When the tide recedes, the water flows through turbines to generate electricity.</li>
+    </ul>
+
+    <h3>Why Tidal Barrages for Globalia?</h3>
+    <p>Globalia’s geographical features, including estuaries with moderate tidal ranges, make tidal barrage technology the most suitable option. This method is efficient for capturing energy even in areas with suboptimal tidal heights, ensuring that Globalia can maximize its renewable energy output.</p>
+
+    <div class="image-container">
+        <img src="tidal_barrages.jpg" alt="Tidal Barrages" style="width: 100%; height: auto; max-width: 800px;">
+    </div>
+</section>
+
+            <div class="image-container">
+                <img src="tidal_barrages.jpg" alt="Tidal Barrages">
+            </div>
             <h3>Phase 1: Location Selection</h3>
             <p>Using Merge Sort, potential sites are ranked based on tidal range, proximity to Globalia, and cost, with a weighted scoring system.</p>
             <p><strong>Example:</strong> Ranked Sites: Site B > Site A > Site C</p>
             <div class="button-container">
                 <a href="Portfolio_location.cpp" class="button">View Location Selection Code</a>
             </div>
+
+            
             
             <!-- Algorithm Analysis for Merge Sort -->
             <button class="accordion">Algorithm Analysis - Merge Sort</button>
             <div class="panel">
                 <p><strong>Time Complexity:</strong> O(n log n)</p>
-                <p><strong>Computational Thinking Breakdown:</strong></p>
+                <p><strong>Computational Thinking:</strong></p>
                 <ul>
-                    <li><strong>Decomposition (Sliding Window):</strong> Divide the problem into smaller parts, focusing on smaller windows of data at a time. In this case, Merge sort processes subsets of sites and recursively merges them into a sorted order.</li>
-                    <li><strong>Pattern Recognition (Lazy Propagation):</strong> Postpone operations until necessary to improve efficiency. Scores are calculated only when needed for ranking, avoiding unnecessary computations.</li>
-                    <li><strong>Abstraction (Prefix and Suffix):</strong> Extract the essence by splitting the array into parts and merging them back. Merge sort divides the list into prefixes and suffixes, then merges them after sorting.</li>
+                    <li><strong>Decomposition (Sliding Window):</strong> Divide the problem into smaller parts, focusing on smaller windows of data at a time.</li>
+                    <li><strong>Pattern Recognition (Lazy Propagation):</strong> Postpone operations until necessary to improve efficiency.</li>
+                    <li><strong>Abstraction (Prefix and Suffix):</strong> Extract the essence by splitting the array into parts and merging them back.</li>
                 </ul>
                 <p><strong>Design Techniques:</strong></p>
                 <ul>
-                    <li><strong>Hierarchical Data:</strong> Organize data hierarchically to solve subproblems. Merge sort builds a hierarchy of divisions and recombinations to sort the sites.</li>
-                    <li><strong>Greedy Scoring:</strong> Choose the optimal edge in every step. Scores are calculated greedily based on weighted factors, ranking sites to identify the best one.</li>
-                    <li><strong>Pre-Computing (Parental Dominance):</strong> Leverage pre-computed results for decision-making. Pre-computed scores simplify the sorting process, prioritizing high-scoring sites.</li>
+                    <li><strong>Hierarchical Data:</strong> Organize data hierarchically to solve subproblems.</li>
+                    <li><strong>Greedy Scoring:</strong> Choose the optimal edge in every step.</li>
+                    <li><strong>Pre-Computing (Parental Dominance):</strong> Leverage pre-computed results for decision-making.</li>
                 </ul>
                 <p><strong>Principles:</strong></p>
                 <ul>
-                    <li><strong>Brave and Cautious Travel:</strong> Explore data breadth-wise and dive into subsets. Merge sort explores and merges subsets of scores and names cautiously to ensure order.</li>
-                    <li><strong>Score Calculation (Balancing a Tree):</strong> Compute a weighted score for each site to balance competing factors. Scores balance tidal range, distance, and cost to ensure a fair evaluation.</li>
-                    <li><strong>Recursive Merging (Kleene Closure):</strong> Apply transitive properties by merging smaller subsets. Merge sort recursively builds sorted lists by ensuring each merge respects the sorted order.</li>
+                    <li><strong>Brave and Cautious Travel:</strong> Explore data breadth-wise and dive into subsets.</li>
+                    <li><strong>Score Calculation (Balancing a Tree):</strong> Compute a weighted score for each site to balance competing factors.</li>
+                    <li><strong>Recursive Merging (Kleene Closure):</strong> Apply transitive properties by merging smaller subsets.</li>
                 </ul>
             </div>
 
             <h3>Phase 2: Energy Demand Sorting</h3>
             <p>Quick Sort arranges sector-wise energy demands in ascending order for efficient allocation.</p>
-            <p><strong>Example:</strong> Sorted Demands: Sector B (120 kWh), Sector A (150 kWh), Sector C (200 kWh)</p>
+            <p><strong>Example:</strong> Sorted Demands: Sector B (120 kWh), SectorC (150 kWh), Sector A (180 kWh)</p>
             <div class="button-container">
-                <a href="Portfolio_quick.cpp" class="button">View Quick Sort Code</a>
+                <a href="Portfolio_energy_demand.cpp" class="button">View Energy Demand Sorting Code</a>
             </div>
+
             
+
             <!-- Algorithm Analysis for Quick Sort -->
             <button class="accordion">Algorithm Analysis - Quick Sort</button>
             <div class="panel">
-                <p><strong>Time Complexity:</strong> O(n log n) on average, but in the worst case, it can be O(n^2). This occurs when the pivot selected is always the smallest or largest element, leading to unbalanced partitions.</p>
-                <p><strong>Computational Thinking Breakdown:</strong></p>
+                <p><strong>Time Complexity:</strong> O(n log n) on average, but O(n^2) in the worst case.</p>
+                <p><strong>Computational Thinking:</strong></p>
                 <ul>
-                    <li><strong>Decomposition:</strong> Divide the problem into smaller manageable parts. QuickSort recursively divides the array into smaller subarrays, sorting each smaller part separately.</li>
-                    <li><strong>Pattern Recognition:</strong> Identify common recurring patterns. The partitioning process is repeated in each recursive call, identifying the pivot and organizing the data around it.</li>
-                    <li><strong>Abstraction:</strong> Keep only the required data for the task. QuickSort focuses on sorting the energy demand values and ignores unnecessary details like the initial positions of elements once they have been rearranged.</li>
+                    <li><strong>Decomposition:</strong> Divide the problem into smaller manageable subarrays and sort each part.</li>
+                    <li><strong>Pattern Recognition:</strong> Identify the recurring pattern of selecting a pivot to partition the array.</li>
+                    <li><strong>Abstraction:</strong> Focus on sorting the demand values without needing the initial positions of elements.</li>
                 </ul>
                 <p><strong>Design Techniques:</strong></p>
                 <ul>
-                    <li><strong>Divide and Conquer:</strong> Divide the problem into smaller parts and then solve the problem. QuickSort divides the array into two smaller subarrays (left and right of the pivot) and recursively sorts them.</li>
-                    <li><strong>Greedy Technique:</strong> Select the optimal choice in each iteration. QuickSort uses the pivot element as the "optimal" choice to partition the array in each step.</li>
-                    <li><strong>Space and Time Tradeoff:</strong> If you optimize time, you lose space. QuickSort’s in-place partitioning reduces the space complexity, but the recursion depth could lead to higher space usage in the call stack.</li>
+                    <li><strong>Divide and Conquer:</strong> Split the array into smaller subarrays and recursively sort them.</li>
+                    <li><strong>Greedy Technique:</strong> The pivot element is the "optimal" choice for partitioning the array.</li>
+                    <li><strong>Space and Time Tradeoff:</strong> Optimizes time at the cost of space in the recursion stack.</li>
                 </ul>
                 <p><strong>Principles:</strong></p>
                 <ul>
-                    <li><strong>Partitioning:</strong> Divide the array into two subarrays around the pivot. The algorithm selects a pivot element and reorders the array such that elements less than the pivot are on one side and elements greater than the pivot are on the other side.</li>
-                    <li><strong>Recursive Approach:</strong> Apply the same process repeatedly to the smaller subarrays. QuickSort recursively calls itself on the left and right partitions until the entire array is sorted.</li>
+                    <li><strong>Partitioning:</strong> Split the array around the pivot, with elements less than the pivot on one side and greater on the other.</li>
+                    <li><strong>Recursive Approach:</strong> Recursively apply the process to the left and right partitions.</li>
                 </ul>
             </div>
 
-            <h3>Phase 3: Optimized Energy Grid Management</h3>
-            <p>Dijkstra’s Algorithm calculates shortest paths for energy transmission, minimizing losses.</p>
+            <!-- Phase 3: Grid Optimization - Dijkstra's Algorithm -->
+            <h3>Phase 3: Grid Optimization</h3>
+            <p>Dijkstra's algorithm optimizes the grid energy distribution, ensuring minimal loss and efficient resource allocation.</p>
+            <p><strong>Example:</strong> Optimized path: Start -> Node B -> Node C -> End</p>
             <div class="button-container">
-                <a href="Portfolio_energydist.cpp" class="button">View Dijkstra's Algorithm Code</a>
+                <a href="Portfolio_grid_optimization.cpp" class="button">View Grid Optimization Code</a>
             </div>
-            
-            <!-- Algorithm Analysis for Dijkstra's Algorithm -->
+
             <button class="accordion">Algorithm Analysis - Dijkstra's Algorithm</button>
             <div class="panel">
-                <p><strong>Time Complexity:</strong> O(V^2): For each of the V vertices, the algorithm performs a linear search to find the minimum distance vertex and checks all other vertices to relax edges.</p>
-                <p><strong>Computational Thinking Breakdown:</strong></p>
+                <p><strong>Time Complexity:</strong> O(V^2) with a simple array, but O(V log V) with a priority queue (min-heap).</p>
+                <p><strong>Computational Thinking:</strong></p>
                 <ul>
-                    <li><strong>Decomposition:</strong> Divide the problem into smaller manageable parts. Dijkstra's algorithm breaks down the problem of finding the shortest path into smaller subproblems by calculating the shortest path from each vertex to all others iteratively.</li>
-                    <li><strong>Pattern Recognition:</strong> Identify common recurring patterns. The algorithm repeatedly finds the minimum tentative distance to an unvisited vertex in each iteration. This pattern is recognized and applied in every step to reduce the problem size.</li>
-                    <li><strong>Abstraction:</strong> Keep only the required data for the task. Dijkstra’s algorithm focuses on key data: the shortest distances (dist[]) and the paths (path[]). It ignores unnecessary details like the full graph structure after reading the cost matrix.</li>
+                    <li><strong>Decomposition:</strong> Break down the problem into smaller subproblems of finding the shortest paths iteratively.</li>
+                    <li><strong>Pattern Recognition:</strong> The process of selecting the vertex with the smallest tentative distance is repeated.</li>
+                    <li><strong>Abstraction:</strong> Focus on the key data like distances and paths, ignoring unnecessary graph details.</li>
                 </ul>
                 <p><strong>Design Techniques:</strong></p>
                 <ul>
-                    <li><strong>Greedy Technique:</strong> Select the optimal choice in each iteration. Dijkstra’s algorithm uses the greedy approach by always choosing the vertex with the smallest tentative distance in each iteration, aiming for the optimal solution.</li>
-                    <li><strong>Space and Time Tradeoff:</strong> If you optimize time, you lose space. Dijkstra uses a priority queue (min-heap) to efficiently find the vertex with the smallest distance, which saves time but uses additional space for the queue.</li>
+                    <li><strong>Greedy Technique:</strong> Always select the vertex with the smallest tentative distance.</li>
+                    <li><strong>Space and Time Tradeoff:</strong> The priority queue (min-heap) speeds up the process but uses extra space.</li>
                 </ul>
                 <p><strong>Principles:</strong></p>
                 <ul>
-                    <li><strong>Edge Relaxation:</strong> Select the minimum edge and make it part of the solution set. This is the core of Dijkstra’s algorithm, where each edge is relaxed by updating the shortest path to the neighboring vertices.</li>
+                    <li><strong>Edge Relaxation:</strong> Update the shortest path to neighboring vertices by relaxing edges.</li>
                 </ul>
             </div>
-
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2024 Globalia Smart City Project. All rights reserved.</p>
+        <div style="text-align: center; padding: 20px; background-color: #4CAF50; color: white;">
+            <p>&copy; 2024 Globalia Smart City Project. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script>
+        // Accordion functionality
         var acc = document.getElementsByClassName("accordion");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
+        for (var i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 var panel = this.nextElementSibling;
@@ -239,3 +349,4 @@
     </script>
 </body>
 </html>
+
