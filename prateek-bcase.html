@@ -5,6 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tidal Energy Plant - Globalia Smart City</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Style for the accordion button */
+        .accordion {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .accordion:hover {
+            background-color: #45a049;
+        }
+
+        /* Style for the dropdown content */
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: #f1f1f1;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        /* Add some padding to the panel content */
+        .panel p {
+            padding: 10px;
+        }
+
+        /* Style for code */
+        pre {
+            background-color: #2d2d2d;
+            color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+    </style>
 </head>
 <body>
     <header>
@@ -12,6 +55,69 @@
     </header>
 
     <div class="container">
+        <!-- Introduction Section -->
+        <section>
+            <h2>Introduction</h2>
+            <p>Globalia, a smart city near Goa covering 1500 square feet, is intended to be a model for sustainable urban development. With a focus on renewable energy and advanced technologies, Globalia aims to integrate green infrastructure and optimize resources to achieve energy efficiency. At the heart of this vision is a tidal energy plant, which utilizes the predictable power of tides to generate electricity. By leveraging algorithms to optimize location selection, energy distribution, and grid management, Globalia ensures sustainable growth and reduced environmental impact.</p>
+        </section>
+
+        <!-- Why Tidal Energy Section -->
+        <section>
+            <h2>Why Tidal Energy for Globalia?</h2>
+            <ul>
+                <li><strong>Predictability:</strong> Unlike solar and wind, tidal cycles are regular and dependable.</li>
+                <li><strong>Efficiency:</strong> The high density of water enables efficient energy generation even with smaller turbines.</li>
+                <li><strong>Environmental Compatibility:</strong> Tidal energy has minimal visual impact and contributes to zero-emission power production.</li>
+            </ul>
+            <p>For Globalia, tidal energy is a logical choice due to its proximity to the coast and the presence of estuaries, making it ideal for implementing tidal barrage technology.</p>
+        </section>
+
+        <!-- SDG Alignment Section -->
+        <section>
+            <h2>Alignment with Sustainable Development Goals (SDG)</h2>
+            <h3>Target 11.6:</h3>
+            <p>Reduce the adverse environmental impact of cities by 2030.</p>
+            <ul>
+                <li><strong>Indicator:</strong> Reduction in carbon emissions through tidal energy adoption.</li>
+                <li><strong>Metric:</strong> Energy generated per kilowatt-hour (kWh) with zero emissions.</li>
+            </ul>
+            <h3>Target 11.3:</h3>
+            <p>Enhance sustainable urbanization through participatory urban planning.</p>
+            <ul>
+                <li><strong>Indicator:</strong> Proportion of cities with integrated energy planning.</li>
+                <li><strong>Metric:</strong> Energy coverage ratio across urban demand centers.</li>
+            </ul>
+        </section>
+
+        <!-- Advantages Section -->
+        <section>
+            <h2>Advantages of Tidal Energy</h2>
+            <ul>
+                <li><strong>Reliable Energy Source:</strong> Tidal cycles are predictable and unaffected by weather changes.</li>
+                <li><strong>Sustainability:</strong> Zero carbon emissions during operation.</li>
+                <li><strong>High Energy Density:</strong> Water’s density enables significant power generation with smaller infrastructure.</li>
+                <li><strong>Longevity:</strong> Infrastructure has a lifespan of several decades with proper maintenance.</li>
+                <li><strong>Integration with Smart Grids:</strong> Algorithms ensure optimized energy distribution with minimal loss.</li>
+            </ul>
+        </section>
+
+        <!-- Challenges and Solutions Section -->
+        <section>
+            <h2>Challenges and Solutions</h2>
+            <h3>Challenges:</h3>
+            <ul>
+                <li><strong>High Initial Costs:</strong> Construction and deployment require significant investment.</li>
+                <li><strong>Environmental Impact:</strong> Marine ecosystems may be disrupted during construction and operation.</li>
+                <li><strong>Operational Maintenance:</strong> Challenges like corrosion and biofouling increase maintenance efforts.</li>
+            </ul>
+            <h3>Solutions:</h3>
+            <ul>
+                <li><strong>Cost Management:</strong> Government funding and technological advancements can reduce costs.</li>
+                <li><strong>Eco-Friendly Designs:</strong> Fish-friendly turbines and lagoon-style tidal plants minimize marine disruption.</li>
+                <li><strong>Advanced Materials:</strong> Corrosion-resistant alloys and coatings reduce maintenance challenges.</li>
+            </ul>
+        </section>
+
         <!-- Implementation Stage Section -->
         <section>
             <h2>Implementation Stage</h2>
@@ -23,354 +129,112 @@
                 <a href="Portfolio_location.cpp" class="button">View Location Selection Code</a>
             </div>
             
-            <!-- Algorithm Analysis and Code for Merge Sort -->
+            <!-- Algorithm Analysis for Merge Sort -->
             <button class="accordion">Algorithm Analysis - Merge Sort</button>
             <div class="panel">
                 <p><strong>Time Complexity:</strong> O(n log n)</p>
                 <p><strong>Computational Thinking:</strong></p>
                 <ul>
-                    <li><strong>Decomposition:</strong> Divide the problem into smaller parts, focusing on smaller windows of data at a time.</li>
-                    <li><strong>Pattern Recognition:</strong> Postpone operations until necessary to improve efficiency.</li>
-                    <li><strong>Abstraction:</strong> Extract the essence by splitting the array into parts and merging them back.</li>
+                    <li><strong>Decomposition (Sliding Window):</strong> Divide the problem into smaller parts, focusing on smaller windows of data at a time.</li>
+                    <li><strong>Pattern Recognition (Lazy Propagation):</strong> Postpone operations until necessary to improve efficiency.</li>
+                    <li><strong>Abstraction (Prefix and Suffix):</strong> Extract the essence by splitting the array into parts and merging them back.</li>
                 </ul>
                 <p><strong>Design Techniques:</strong></p>
                 <ul>
                     <li><strong>Hierarchical Data:</strong> Organize data hierarchically to solve subproblems.</li>
                     <li><strong>Greedy Scoring:</strong> Choose the optimal edge in every step.</li>
+                    <li><strong>Pre-Computing (Parental Dominance):</strong> Leverage pre-computed results for decision-making.</li>
                 </ul>
                 <p><strong>Principles:</strong></p>
                 <ul>
                     <li><strong>Brave and Cautious Travel:</strong> Explore data breadth-wise and dive into subsets.</li>
-                    <li><strong>Score Calculation:</strong> Compute a weighted score for each site to balance competing factors.</li>
+                    <li><strong>Score Calculation (Balancing a Tree):</strong> Compute a weighted score for each site to balance competing factors.</li>
+                    <li><strong>Recursive Merging (Kleene Closure):</strong> Apply transitive properties by merging smaller subsets.</li>
                 </ul>
             </div>
 
-            <!-- Code for Merge Sort -->
-            <button class="accordion">View Merge Sort Code</button>
-            <div class="panel">
-                <pre><code>#include &lt;iostream&gt;
-using namespace std;
-
-void merge(float scores[], string names[], int left, int mid, int right)
-{
-    int i = left, j = mid + 1, k = 0;
-    float temp_scores[right - left + 1];
-    string temp_names[right - left + 1];
-
-    while (i &lt;= mid && j &lt;= right)
-    {
-        if (scores[i] &gt;= scores[j])
-        {
-            temp_scores[k] = scores[i];
-            temp_names[k] = names[i];
-            i++;
-        }
-        else
-        {
-            temp_scores[k] = scores[j];
-            temp_names[k] = names[j];
-            j++;
-        }
-        k++;
-    }
-
-    while (i &lt;= mid)
-    {
-        temp_scores[k] = scores[i];
-        temp_names[k] = names[i];
-        i++;
-        k++;
-    }
-
-    while (j &lt;= right)
-    {
-        temp_scores[k] = scores[j];
-        temp_names[k] = names[j];
-        j++;
-        k++;
-    }
-
-    for (int x = 0; x &lt; k; x++)
-    {
-        scores[left + x] = temp_scores[x];
-        names[left + x] = temp_names[x];
-    }
-}
-
-void merge_sort(float scores[], string names[], int left, int right)
-{
-    if (left &lt; right)
-    {
-        int mid = (left + right) / 2;
-        merge_sort(scores, names, left, mid);
-        merge_sort(scores, names, mid + 1, right);
-        merge(scores, names, left, mid, right);
-    }
-}
-
-void calculate_scores(float tidal_range[], float distance[], float cost[], float scores[], int count)
-{
-    for (int i = 0; i &lt; count; i++)
-    {
-        scores[i] = (tidal_range[i] * 0.5) + (distance[i] * 0.3) + (cost[i] * 0.2);
-    }
-}
-
-int main()
-{
-    int site_count;
-    cout &lt;&lt; "Enter the number of sites: ";
-    cin &gt;&gt; site_count;
-
-    string site_names[site_count];
-    float tidal_range[site_count], distance[site_count], cost[site_count], scores[site_count];
-
-    for (int i = 0; i &lt; site_count; i++)
-    {
-        cout &lt;&lt; "Enter details for site " &lt;&lt; i + 1 &lt;&lt; "(Name,Tidal Range,Distance,Cost): ";
-        cin &gt;&gt; site_names[i] &gt;&gt; tidal_range[i] &gt;&gt; distance[i] &gt;&gt; cost[i];
-    }
-
-    calculate_scores(tidal_range, distance, cost, scores, site_count);
-    merge_sort(scores, site_names, 0, site_count - 1);
-
-    cout &lt;&lt; "\nRanked Sites Based on Scores:\n";
-    for (int i = 0; i &lt; site_count; i++)
-    {
-        cout &lt;&lt; site_names[i] &lt;&lt; ": Tidal Range = " &lt;&lt; tidal_range[i]<< "m, Distance = " &lt;&lt; distance[i] << "km, Cost = Rs."
-        &lt;&lt; cost[i]<< "M, Score = " &lt;&lt; scores[i] << endl;
-    }
-
-    return 0;
-}
-                </code></pre>
+            <h3>Phase 2: Energy Demand Sorting</h3>
+            <p>Quick Sort arranges sector-wise energy demands in ascending order for efficient allocation.</p>
+            <p><strong>Example:</strong> Sorted Demands: Sector B (120 kWh), Sector A (150 kWh), Sector C (200 kWh)</p>
+            <div class="button-container">
+                <a href="Portfolio_quick.cpp" class="button">View Quick Sort Code</a>
             </div>
-
-            <!-- Algorithm Analysis and Code for Quick Sort -->
+            
+            <!-- Algorithm Analysis for Quick Sort -->
             <button class="accordion">Algorithm Analysis - Quick Sort</button>
             <div class="panel">
-                <p><strong>Time Complexity:</strong> O(n log n) on average, O(n^2) in the worst case.</p>
+                <p><strong>Time Complexity:</strong> O(n log n) on average, but in the worst case, it can be O(n^2).</p>
                 <p><strong>Computational Thinking:</strong></p>
                 <ul>
-                    <li><strong>Decomposition:</strong> The problem is divided into smaller subproblems, sorting each section recursively.</li>
-                    <li><strong>Pattern Recognition:</strong> Recognizing the recursive pattern of partitioning the array and sorting the two subarrays.</li>
-                    <li><strong>Abstraction:</strong> Focusing only on the values to be sorted, ignoring the original indices once rearranged.</li>
+                    <li><strong>Decomposition:</strong> Divide the problem into smaller manageable parts.</li>
+                    <li><strong>Pattern Recognition:</strong> Identify common recurring patterns.</li>
+                    <li><strong>Abstraction:</strong> Keep only the required data for the task.</li>
                 </ul>
                 <p><strong>Design Techniques:</strong></p>
                 <ul>
-                    <li><strong>Divide and Conquer:</strong> The array is recursively divided into smaller subarrays.</li>
-                    <li><strong>Greedy Technique:</strong> The pivot is selected as the "optimal" element in each iteration to divide the array.</li>
+                    <li><strong>Divide and Conquer:</strong> Divide the problem into smaller parts and then solve the problem.</li>
+                    <li><strong>Greedy Technique:</strong> Select the optimal choice in each iteration.</li>
+                    <li><strong>Space and Time Tradeoff:</strong> If you optimize time, you lose space.</li>
                 </ul>
                 <p><strong>Principles:</strong></p>
                 <ul>
-                    <li><strong>Partitioning:</strong> Elements are divided based on comparison to the pivot.</li>
-                    <li><strong>Recursive Approach:</strong> The algorithm applies partitioning recursively until all subarrays are sorted.</li>
+                    <li><strong>Partitioning:</strong> Divide the array into two subarrays around the pivot.</li>
+                    <li><strong>Recursive Approach:</strong> Apply the same process repeatedly to the smaller subarrays.</li>
                 </ul>
             </div>
 
-            <!-- Code for Quick Sort -->
-            <button class="accordion">View Quick Sort Code</button>
-            <div class="panel">
-                <pre><code>#include&lt;iostream&gt;
-using namespace std;
-
-#define MAX 100
-
-int partition(int A[MAX], int l, int r)
-{
-    int p = A[l];
-    int i = l;
-    int j = r + 1;
-
-    do
-    {
-        do
-        {
-            i++;
-        } while (i &lt;= r && A[i] &lt; p);
-
-        do
-        {
-            j--;
-        } while (A[j] &gt; p);
-
-        if (i &lt; j)
-            swap(A[i], A[j]);
-    } while (i &lt; j);
-
-    swap(A[l], A[j]);
-
-    return j;
-}
-
-void quicksort(int A[MAX], int l, int r)
-{
-    if (l &lt; r)
-    {
-        int s = partition(A, l, r);
-        quicksort(A, l, s - 1);
-        quicksort(A, s + 1, r);
-    }
-}
-
-int main()
-{
-    int n, A[MAX];
-    cout &lt;&lt; "Enter the number of sectors: ";
-    cin &gt;&gt; n;
-    cout &lt;&lt; "Enter the energy demand for each sector (in kWh): " &lt;&lt; endl;
-
-    for (int i = 0; i &lt; n; i++)
-    {
-        cin &gt;&gt; A[i];
-    }
-
-    quicksort(A, 0, n - 1);
-
-    cout &lt;&lt; "Sorted energy demands (from low to high): ";
-    for (int i = 0; i &lt; n; i++)
-    {
-        cout &lt;&lt; A[i] &lt;&lt; " ";
-    }
-
-    return 0;
-}
-                </code></pre>
+            <h3>Phase 3: Optimized Energy Grid Management</h3>
+            <p>Dijkstra’s Algorithm calculates shortest paths for energy transmission, minimizing losses.</p>
+            <div class="button-container">
+                <a href="Portfolio_energydist.cpp" class="button">View Dijkstra's Algorithm Code</a>
             </div>
-
-            <!-- Algorithm Analysis and Code for Dijkstra's Algorithm -->
+            
+            <!-- Algorithm Analysis for Dijkstra's Algorithm -->
             <button class="accordion">Algorithm Analysis - Dijkstra's Algorithm</button>
             <div class="panel">
-                <p><strong>Time Complexity:</strong> O(V^2), where V is the number of vertices.</p>
+                <p><strong>Time Complexity:</strong> O(V^2)</p>
                 <p><strong>Computational Thinking:</strong></p>
                 <ul>
-                    <li><strong>Decomposition:</strong> Break the problem into finding the shortest path from one vertex to another.</li>
-                    <li><strong>Pattern Recognition:</strong> Recognize the problem of finding minimum distance at each step.</li>
-                    <li><strong>Abstraction:</strong> Ignore the individual steps of iteration and focus on the result.</li>
+                    <li><strong>Decomposition:</strong> Divide the problem into smaller manageable parts.</li>
+                    <li><strong>Pattern Recognition:</strong> Identify common recurring patterns.</li>
+                    <li><strong>Abstraction:</strong> Keep only the required data for the task.</li>
                 </ul>
                 <p><strong>Design Techniques:</strong></p>
                 <ul>
-                    <li><strong>Greedy Approach:</strong> Select the next closest node to the source vertex.</li>
-                    <li><strong>Recursive Thinking:</strong> Dijkstra's algorithm is naturally recursive in its approach to finding the shortest paths.</li>
+                    <li><strong>Greedy Technique:</strong> Select the optimal choice in each iteration.</li>
+                    <li><strong>Space and Time Tradeoff:</strong> Optimize time but lose space.</li>
                 </ul>
                 <p><strong>Principles:</strong></p>
                 <ul>
-                    <li><strong>Optimal Substructure:</strong> The shortest path to any node is the combination of the shortest paths to its neighboring nodes.</li>
-                    <li><strong>Overlapping Subproblems:</strong> The problem of finding the shortest path is solved repeatedly for each vertex.</li>
+                    <li><strong>Edge Relaxation:</strong> Select the minimum edge and make it part of the solution set.</li>
                 </ul>
             </div>
+        </section>
 
-            <!-- Code for Dijkstra's Algorithm -->
-            <button class="accordion">View Dijkstra's Algorithm Code</button>
-            <div class="panel">
-                <pre><code>#include&lt;iostream&gt;
-using namespace std;
-
-class Dijkstra
-{
-public:
-    int cost[10][10];
-    int vertices;
-    int dist[10];
-    int path[10];
-    bool visited[10];
-
-    void read_cost();
-    void initialise(int source);
-    void shortest_path(int source);
-    void print_path();
-};
-
-void Dijkstra::read_cost()
-{
-    cout &lt;&lt; "Enter the cost matrix: " &lt;&lt; endl;
-    for (int i = 0; i &lt; vertices; i++)
-    {
-        for (int j = 0; j &lt; vertices; j++)
-        {
-            cin &gt;&gt; cost[i][j];
-        }
-    }
-}
-
-void Dijkstra::initialise(int source)
-{
-    for (int i = 0; i &lt; vertices; i++)
-    {
-        dist[i] = 1000000;
-        visited[i] = false;
-        path[i] = -1;
-    }
-    dist[source] = 0;
-}
-
-void Dijkstra::shortest_path(int source)
-{
-    for (int i = 0; i &lt; vertices - 1; i++)
-    {
-        int min_dist = 1000000;
-        int u;
-
-        for (int v = 0; v &lt; vertices; v++)
-        {
-            if (!visited[v] && dist[v] &lt; min_dist)
-            {
-                min_dist = dist[v];
-                u = v;
-            }
-        }
-
-        visited[u] = true;
-
-        for (int v = 0; v &lt; vertices; v++)
-        {
-            if (!visited[v] && cost[u][v] != -1 && dist[u] + cost[u][v] &lt; dist[v])
-            {
-                dist[v] = dist[u] + cost[u][v];
-                path[v] = u;
-            }
-        }
-    }
-}
-
-void Dijkstra::print_path()
-{
-    cout &lt;&lt; "Energy distribution paths: " &lt;&lt; endl;
-    for (int i = 0; i &lt; vertices; i++)
-    {
-        cout &lt;&lt; "Sector " &lt;&lt; i &lt;&lt; ": Distance = " &lt;&lt; dist[i] &lt;&lt; ", Path: ";
-        int vertex = i;
-        while (vertex != -1)
-        {
-            cout &lt;&lt; vertex &lt;&lt; " ";
-            vertex = path[vertex];
-        }
-        cout &lt;&lt; endl;
-    }
-}
-
-int main()
-{
-    Dijkstra d;
-    cout &lt;&lt; "Enter number of sectors: ";
-    cin &gt;&gt; d.vertices;
-    d.read_cost();
-
-    int source;
-    cout &lt;&lt; "Enter the source sector: ";
-    cin &gt;&gt; source;
-
-    d.initialise(source);
-    d.shortest_path(source);
-    d.print_path();
-
-    return 0;
-}
-                </code></pre>
-            </div>
+        <!-- Conclusion Section -->
+        <section>
+            <h2>Conclusion</h2>
+            <p>The tidal barrage power plant in Globalia represents a breakthrough in sustainable city planning. By integrating location-specific algorithms, energy demand sorting, and optimized transmission pathways, this project ensures efficient energy utilization while minimizing environmental impacts. Aligned with SDG targets, Globalia’s initiative demonstrates how innovative technology and renewable energy can shape the future of urban development.</p>
         </section>
     </div>
-    
-    <script src="script.js"></script>
+
+    <footer>
+        <p>&copy; 2024 Team Globalia | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
 </body>
 </html>
