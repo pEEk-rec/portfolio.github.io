@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Sort for Waste Collection Prioritization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 50%;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        .array-display {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Waste Collection Prioritization Using Quick Sort</h1>
+<p>This simulation demonstrates how Quick Sort can be used to sort waste quantities or collection times to prioritize areas for waste collection.</p>
+
+<h3>Menu</h3>
+<button onclick="sortAndDisplay()">Start Sorting for Waste Collection Prioritization</button>
+
+<div id="sortedOutput" class="array-display">
+    <h3>Sorted Waste Collection Priority:</h3>
+    <p>Sorted Array: </p>
+    <div id="sortedArray"></div>
+</div>
+
+<script>
+// Quick Sort Implementation in JavaScript
+function quickSort(arr, left, right) {
+    if (left < right) {
+        let pivotIndex = partition(arr, left, right);
+        quickSort(arr, left, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, right);
+    }
+}
+
+function partition(arr, left, right) {
+    let pivot = arr[left];
+    let i = left;
+    let j = right + 1;
+
+    while (true) {
+        do {
+            i++;
+        } while (i <= right && arr[i] < pivot);
+
+        do {
+            j--;
+        } while (arr[j] > pivot);
+
+        if (i >= j) break;
+
+        // Swap elements at indices i and j
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+
+    // Swap the pivot element with element at j
+    [arr[left], arr[j]] = [arr[j], arr[left]];
+
+    return j;
+}
+
+// Function to start sorting and display the output
+function sortAndDisplay() {
+    // Example waste quantities (representing urgency for collection)
+    let wasteCollectionData = [10, 7, 8, 9, 1, 5];
+
+    // Perform Quick Sort
+    quickSort(wasteCollectionData, 0, wasteCollectionData.length - 1);
+
+    // Display the sorted array
+    document.getElementById("sortedArray").textContent = wasteCollectionData.join(' ');
+}
+</script>
+
+</body>
+</html>

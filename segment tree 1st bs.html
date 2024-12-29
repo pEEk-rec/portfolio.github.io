@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segment Tree for Heritage Expenditures</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input[type="number"], button {
+            margin: 5px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .segment-tree-display {
+            margin-top: 20px;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Segment Tree for Tracking Expenditures on Cultural Heritage Sites</h1>
+
+<div>
+    <label for="expenditure-input">Enter expenditures (comma-separated): </label>
+    <input type="text" id="expenditure-input" value="10,20,30,40,50">
+    <button onclick="initializeTree()">Initialize Tree</button>
+</div>
+
+<div class="result">
+    <label for="range-query">Query Total Expenditure for range (start, end): </label>
+    <input type="number" id="range-start" placeholder="Start Index">
+    <input type="number" id="range-end" placeholder="End Index">
+    <button onclick="queryRange()">Query Range</button>
+    <p id="range-result"></p>
+</div>
+
+<div class="result">
+    <label for="update-index">Update Expenditure at Index:</label>
+    <input type="number" id="update-index" placeholder="Index">
+    <label for="update-value">New Value:</label>
+    <input type="number" id="update-value" placeholder="New Value">
+    <button onclick="updateValue()">Update Value</button>
+    <p id="update-result"></p>
+</div>
+
+<div class="segment-tree-display">
+    <h3>Segment Tree:</h3>
+    <pre id="tree-display">No data yet</pre>
+</div>
+
+<script>
+    class SegmentTree {
+        constructor(data) {
+            this.n = data.length;
+            this.tree = new Array(4 * this.n);
+            this.buildTree(data, 0, 0, this.n - 1);
+        }
+
+        buildTree(data, node, start, end) {
+            if (start === end) {
+                this.tree[node] = data[start];
+            } else {
+                const mid = Math.floor((start + end) / 2);
+                const leftChild = 2 * node + 1;
+                const rightChild = 2 * node + 2;
+                this.buildTree(data, leftChild, start, mid);
+                this.buildTree(data, rightChild, mid + 1, end);
+                this.tree[node] = this.tree[leftChild] + this.tree[rightChild];
+            }
+        }
+
+        queryRange(node, start, end, L, R) {
+            if (R < start || L > end) {
+                return 0;
+            }
+            if (L <= start && end <= R) {
+                return this.tree[node];
+            }
+            const mid = Math.floor((start + end) / 2);
+            const leftChild = 2 * node + 1;
+            const rightChild = 2 * node + 2;
+            const leftSum = this.queryRange(leftChild, start, mid, L, R);
+            const rightSum = this.queryRange(rightChild, mid + 1, end, L, R);
+            return leftSum + rightSum;
+        }
+
+        update(node, start, end, idx, value) {
+            if (start === end) {
+                this.tree[node] = value;
+            } else {
+                const mid = Math.floor((start + end) / 2);
+                const leftChild = 2 * node + 1;
+                const rightChild = 2 * node + 2;
+                if (start <= idx && idx <= mid) {
+                    this.update(leftChild, start, mid, idx, value);
+                } else {
+                    this.update(rightChild, mid + 1, end, idx, value);
+                }
+                this.tree[node] = this.tree[leftChild] + this.tree[rightChild];
+            }
+        }
+
+        rangeQuery(L, R) {
+            return this.queryRange(0, 0, this.n - 1, L, R);
+        }
+
+        pointUpdate(idx, value) {
+            this.update(0, 0, this.n - 1, idx, value);
+        }
+
+        displayTree() {
+            return this.tree.join(', ');
+        }
+    }
+
+    let segTree;
+
+    function initializeTree() {
+        const input = document.getElementById("expenditure-input").value;
+        const expenditures = input.split(',').map(Number);
+        segTree = new SegmentTree(expenditures);
+        displayTree();
+    }
+
+    function queryRange() {
+        const start = parseInt(document.getElementById("range-start").value);
+        const end = parseInt(document.getElementById("range-end").value);
+        if (segTree) {
+            const result = segTree.rangeQuery(start, end);
+            document.getElementById("range-result").innerText = `Total Expenditure from ${start} to ${end}: ${result}`;
+        }
+    }
+
+    function updateValue() {
+        const idx = parseInt(document.getElementById("update-index").value);
+        const value = parseInt(document.getElementById("update-value").value);
+        if (segTree) {
+            segTree.pointUpdate(idx, value);
+            document.getElementById("update-result").innerText = `Updated expenditure at index ${idx} to ${value}.`;
+            displayTree();
+        }
+    }
+
+    function displayTree() {
+        if (segTree) {
+            document.getElementById("tree-display").innerText = segTree.displayTree();
+        }
+    }
+</script>
+
+</body>
+</html>

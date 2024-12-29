@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hashing for Waste Collection Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 50%;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Waste Collection Monitoring System</h1>
+<p>Simulate monitoring of urban solid waste collection using hashing.</p>
+
+<div>
+    <h3>Menu</h3>
+    <button onclick="showInsertForm()">Insert Waste Collection Status</button>
+    <button onclick="searchWasteCollection()">Search Waste Collection Status</button>
+    <button onclick="deleteWasteCollection()">Delete Waste Collection Status</button>
+    <button onclick="displayHashTable()">Display Hash Table</button>
+    <button onclick="exitSystem()">Exit</button>
+</div>
+
+<div id="insertForm" style="display:none;">
+    <h3>Insert Waste Collection Status</h3>
+    <label for="districtId">Enter District ID (Roll Number):</label>
+    <input type="number" id="districtId" required>
+    <button onclick="insertKey()">Insert</button>
+    <button onclick="closeForm()">Cancel</button>
+</div>
+
+<div id="searchForm" style="display:none;">
+    <h3>Search Waste Collection Status</h3>
+    <label for="searchId">Enter District ID to Search:</label>
+    <input type="number" id="searchId" required>
+    <button onclick="searchKey()">Search</button>
+    <button onclick="closeForm()">Cancel</button>
+</div>
+
+<div id="deleteForm" style="display:none;">
+    <h3>Delete Waste Collection Status</h3>
+    <label for="deleteId">Enter District ID to Delete:</label>
+    <input type="number" id="deleteId" required>
+    <button onclick="deleteKey()">Delete</button>
+    <button onclick="closeForm()">Cancel</button>
+</div>
+
+<div id="output" style="margin-top: 20px;">
+    <h3>Output:</h3>
+    <ul id="logList"></ul>
+</div>
+
+<div id="hashTableDiv">
+    <h3>Hash Table:</h3>
+    <table id="hashTable"></table>
+</div>
+
+<script>
+// Initialize hash table with -1 indicating empty slots
+let hashTable = Array(100).fill(-1);
+
+// Function to simulate inserting a district's waste collection status
+function insertKey() {
+    const districtId = document.getElementById('districtId').value;
+    if (districtId === '') {
+        alert('Please enter a district ID.');
+        return;
+    }
+
+    const index = districtId % 100;
+    hashTable[index] = districtId;
+
+    logOutput(`Waste collection status for District ${districtId} inserted.`);
+    closeForm();
+    displayHashTable();
+}
+
+// Function to search for a district's waste collection status
+function searchKey() {
+    const searchId = document.getElementById('searchId').value;
+    if (searchId === '') {
+        alert('Please enter a district ID to search.');
+        return;
+    }
+
+    const index = searchId % 100;
+    if (hashTable[index] === -1) {
+        logOutput(`No data found for District ${searchId}.`);
+    } else {
+        logOutput(`Waste collection status for District ${searchId} is found.`);
+    }
+
+    closeForm();
+}
+
+// Function to delete a district's waste collection status
+function deleteKey() {
+    const deleteId = document.getElementById('deleteId').value;
+    if (deleteId === '') {
+        alert('Please enter a district ID to delete.');
+        return;
+    }
+
+    const index = deleteId % 100;
+    if (hashTable[index] === -1) {
+        logOutput(`No data found to delete for District ${deleteId}.`);
+    } else {
+        hashTable[index] = -1;
+        logOutput(`Waste collection status for District ${deleteId} deleted.`);
+    }
+
+    closeForm();
+    displayHashTable();
+}
+
+// Function to display the current hash table
+function displayHashTable() {
+    const table = document.getElementById('hashTable');
+    table.innerHTML = `<thead><tr><th>Index</th><th>District ID (Waste Status)</th></tr></thead><tbody></tbody>`;
+
+    const tbody = table.querySelector('tbody');
+    for (let i = 0; i < hashTable.length; i++) {
+        const row = document.createElement('tr');
+        const cell1 = document.createElement('td');
+        const cell2 = document.createElement('td');
+        cell1.textContent = i;
+        cell2.textContent = hashTable[i] === -1 ? 'No Data' : hashTable[i];
+        row.appendChild(cell1);
+        row.appendChild(cell2);
+        tbody.appendChild(row);
+    }
+}
+
+// Function to show the insert form
+function showInsertForm() {
+    document.getElementById('insertForm').style.display = 'block';
+    document.getElementById('searchForm').style.display = 'none';
+    document.getElementById('deleteForm').style.display = 'none';
+}
+
+// Function to search for waste collection status
+function searchWasteCollection() {
+    document.getElementById('insertForm').style.display = 'none';
+    document.getElementById('searchForm').style.display = 'block';
+    document.getElementById('deleteForm').style.display = 'none';
+}
+
+// Function to delete waste collection status
+function deleteWasteCollection() {
+    document.getElementById('insertForm').style.display = 'none';
+    document.getElementById('searchForm').style.display = 'none';
+    document.getElementById('deleteForm').style.display = 'block';
+}
+
+// Function to close the form
+function closeForm() {
+    document.getElementById('insertForm').style.display = 'none';
+    document.getElementById('searchForm').style.display = 'none';
+    document.getElementById('deleteForm').style.display = 'none';
+}
+
+// Function to log output messages
+function logOutput(message) {
+    const logList = document.getElementById('logList');
+    const listItem = document.createElement('li');
+    listItem.textContent = message;
+    logList.appendChild(listItem);
+}
+
+// Function to exit the system
+function exitSystem() {
+    if (confirm('Are you sure you want to exit?')) {
+        window.close();
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floyd's Algorithm - Shortest Path for Air Quality Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            margin: 5px;
+        }
+        .matrix {
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        .matrix td, .matrix th {
+            border: 1px solid #000;
+            padding: 5px 10px;
+        }
+        .matrix th {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Floyd's Algorithm - Shortest Path for Air Quality Monitoring</h1>
+
+<div>
+    <h3>Define the pollution levels between monitoring stations:</h3>
+    <table class="matrix" id="pollutionMatrix">
+        <thead>
+            <tr>
+                <th>Station</th>
+                <th>Station 1</th>
+                <th>Station 2</th>
+                <th>Station 3</th>
+                <th>Station 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Station 1</td>
+                <td><input type="number" id="s1s1" value="0"></td>
+                <td><input type="number" id="s1s2" value="3"></td>
+                <td><input type="number" id="s1s3" value="INF"></td>
+                <td><input type="number" id="s1s4" value="INF"></td>
+            </tr>
+            <tr>
+                <td>Station 2</td>
+                <td><input type="number" id="s2s1" value="2"></td>
+                <td><input type="number" id="s2s2" value="0"></td>
+                <td><input type="number" id="s2s3" value="INF"></td>
+                <td><input type="number" id="s2s4" value="INF"></td>
+            </tr>
+            <tr>
+                <td>Station 3</td>
+                <td><input type="number" id="s3s1" value="INF"></td>
+                <td><input type="number" id="s3s2" value="7"></td>
+                <td><input type="number" id="s3s3" value="0"></td>
+                <td><input type="number" id="s3s4" value="1"></td>
+            </tr>
+            <tr>
+                <td>Station 4</td>
+                <td><input type="number" id="s4s1" value="INF"></td>
+                <td><input type="number" id="s4s2" value="INF"></td>
+                <td><input type="number" id="s4s3" value="INF"></td>
+                <td><input type="number" id="s4s4" value="0"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="runFloydWarshall()">Calculate Shortest Paths</button>
+</div>
+
+<div id="resultSection" style="margin-top: 20px;">
+    <h3>Shortest Path Matrix:</h3>
+    <table class="matrix" id="shortestPathMatrix"></table>
+</div>
+
+<script>
+// Floyd-Warshall Algorithm implementation in JavaScript
+function floydWarshall(W) {
+    let n = W.length;
+    let D = W.map(row => row.slice());
+
+    for (let k = 0; k < n; ++k) {
+        for (let i = 0; i < n; ++i) {
+            for (let j = 0; j < n; ++j) {
+                if (D[i][j] > D[i][k] + D[k][j]) {
+                    D[i][j] = D[i][k] + D[k][j];
+                }
+            }
+        }
+    }
+
+    return D;
+}
+
+// Convert input matrix to appropriate form
+function getPollutionMatrix() {
+    let matrix = [];
+    let n = 4;
+    for (let i = 0; i < n; ++i) {
+        matrix[i] = [];
+        for (let j = 0; j < n; ++j) {
+            let id = `s${i+1}s${j+1}`;
+            let value = document.getElementById(id).value;
+            matrix[i].push(value === 'INF' ? Infinity : parseInt(value));
+        }
+    }
+    return matrix;
+}
+
+// Display the result matrix
+function displayResultMatrix(D) {
+    let matrixHTML = '<thead><tr><th>Station</th><th>Station 1</th><th>Station 2</th><th>Station 3</th><th>Station 4</th></tr></thead><tbody>';
+    
+    for (let i = 0; i < D.length; ++i) {
+        matrixHTML += `<tr><td>Station ${i + 1}</td>`;
+        for (let j = 0; j < D[i].length; ++j) {
+            matrixHTML += `<td>${D[i][j] === Infinity ? 'INF' : D[i][j]}</td>`;
+        }
+        matrixHTML += '</tr>';
+    }
+
+    matrixHTML += '</tbody>';
+    document.getElementById('shortestPathMatrix').innerHTML = matrixHTML;
+}
+
+// Main function to run the Floyd-Warshall algorithm
+function runFloydWarshall() {
+    let W = getPollutionMatrix();
+    let D = floydWarshall(W);
+    displayResultMatrix(D);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenwick Tree for Public Space Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input[type="number"], button {
+            margin: 5px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .fenwick-tree-display {
+            margin-top: 20px;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Fenwick Tree for Public Space Management</h1>
+
+<div>
+    <label for="space-input">Enter public space data (comma-separated, e.g., area sizes for regions): </label>
+    <input type="text" id="space-input" value="10,20,30,40,50">
+    <button onclick="initializeFenwickTree()">Initialize Tree</button>
+</div>
+
+<div class="result">
+    <label for="query-end">Query Total Open Space for region (1 to index): </label>
+    <input type="number" id="query-end" placeholder="Index">
+    <button onclick="queryPublicSpace()">Query Public Space</button>
+    <p id="query-result"></p>
+</div>
+
+<div class="result">
+    <label for="update-index">Update Open Space at Region Index:</label>
+    <input type="number" id="update-index" placeholder="Index">
+    <label for="update-value">New Open Space Value:</label>
+    <input type="number" id="update-value" placeholder="New Value">
+    <button onclick="updatePublicSpace()">Update Value</button>
+    <p id="update-result"></p>
+</div>
+
+<div class="fenwick-tree-display">
+    <h3>Fenwick Tree Array:</h3>
+    <pre id="tree-display">No data yet</pre>
+</div>
+
+<script>
+    class FenwickTree {
+        constructor(data) {
+            this.n = data.length;
+            this.tree = new Array(this.n + 1).fill(0);
+            this.buildTree(data);
+        }
+
+        buildTree(data) {
+            for (let i = 0; i < this.n; i++) {
+                this.update(i + 1, data[i]);
+            }
+        }
+
+        update(index, delta) {
+            for (let x = index; x <= this.n; x += x & -x) {
+                this.tree[x] += delta;
+            }
+        }
+
+        query(index) {
+            let sum = 0;
+            for (let x = index; x > 0; x -= x & -x) {
+                sum += this.tree[x];
+            }
+            return sum;
+        }
+
+        displayTree() {
+            return this.tree.slice(1).join(', ');
+        }
+    }
+
+    let fenwickTree;
+
+    function initializeFenwickTree() {
+        const input = document.getElementById("space-input").value;
+        const spaces = input.split(',').map(Number);
+        fenwickTree = new FenwickTree(spaces);
+        displayTree();
+    }
+
+    function queryPublicSpace() {
+        const endIndex = parseInt(document.getElementById("query-end").value);
+        if (fenwickTree) {
+            const result = fenwickTree.query(endIndex);
+            document.getElementById("query-result").innerText = `Total Open Space from 1 to ${endIndex}: ${result}`;
+        }
+    }
+
+    function updatePublicSpace() {
+        const index = parseInt(document.getElementById("update-index").value);
+        const value = parseInt(document.getElementById("update-value").value);
+        if (fenwickTree) {
+            const currentValue = fenwickTree.query(index) - fenwickTree.query(index - 1);
+            const delta = value - currentValue;
+            fenwickTree.update(index, delta);
+            document.getElementById("update-result").innerText = `Updated open space at region index ${index} to ${value}.`;
+            displayTree();
+        }
+    }
+
+    function displayTree() {
+        if (fenwickTree) {
+            document.getElementById("tree-display").innerText = fenwickTree.displayTree();
+        }
+    }
+</script>
+
+</body>
+</html>

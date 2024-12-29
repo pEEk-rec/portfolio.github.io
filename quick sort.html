@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Sort Algorithm for Resource Allocation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            margin: 5px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Quick Sort for Optimizing Resource Allocation</h1>
+
+<div>
+    <label for="expenditures">Enter expenditure data (comma-separated): </label>
+    <input type="text" id="expenditures" value="10,7,8,9,1,5">
+    <button onclick="runQuickSort()">Sort Expenditures</button>
+</div>
+
+<div class="result">
+    <h3>Sorted Expenditures (Descending Order):</h3>
+    <ul id="sorted-result"></ul>
+</div>
+
+<script>
+// Quick Sort Algorithm
+function partition(arr, low, high) {
+    const pivot = arr[low];
+    let i = low;
+    let j = high + 1;
+
+    while (true) {
+        do {
+            i++;
+        } while (i <= high && arr[i] < pivot);
+
+        do {
+            j--;
+        } while (arr[j] > pivot);
+
+        if (i >= j) break;
+
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+
+    [arr[low], arr[j]] = [arr[j], arr[low]];
+    return j;
+}
+
+function quickSort(arr, low, high) {
+    if (low < high) {
+        const pivotIndex = partition(arr, low, high);
+        quickSort(arr, low, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, high);
+    }
+}
+
+function runQuickSort() {
+    const input = document.getElementById('expenditures').value;
+    const arr = input.split(',').map(num => parseInt(num.trim(), 10));
+
+    quickSort(arr, 0, arr.length - 1);
+
+    // Display the sorted result in descending order
+    const sortedResult = document.getElementById('sorted-result');
+    sortedResult.innerHTML = arr.map(num => `<li>${num}</li>`).join('');
+}
+</script>
+
+</body>
+</html>

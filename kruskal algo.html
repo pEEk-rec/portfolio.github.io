@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kruskal's Algorithm for Heritage Sites</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            margin: 5px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .tree-display {
+            margin-top: 20px;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Kruskal's Algorithm for Heritage Sites</h1>
+
+<div>
+    <label for="nodes">Enter number of nodes (heritage sites): </label>
+    <input type="number" id="nodes" value="4" min="2" max="20">
+    <button onclick="initializeGraph()">Initialize Graph</button>
+</div>
+
+<div>
+    <label for="edges">Enter edges (format: u,v,weight; e.g., 0,1,10): </label>
+    <input type="text" id="edges" value="0,1,10;0,2,6;0,3,5;1,3,15;2,3,4">
+    <button onclick="runKruskal()">Run Kruskal's Algorithm</button>
+</div>
+
+<div class="result">
+    <h3>Minimum Spanning Tree (MST):</h3>
+    <ul id="mst-result"></ul>
+</div>
+
+<div class="tree-display">
+    <h3>Disjoint Set (Union-Find) States:</h3>
+    <pre id="disjoint-set-display"></pre>
+</div>
+
+<script>
+// Disjoint Set (Union-Find) Class
+class DisjointSet {
+    constructor(n) {
+        this.parent = Array.from({ length: n }, (_, i) => i);
+        this.rank = Array(n).fill(0);
+    }
+
+    find(x) {
+        if (this.parent[x] !== x) {
+            this.parent[x] = this.find(this.parent[x]);
+        }
+        return this.parent[x];
+    }
+
+    unite(x, y) {
+        const rootX = this.find(x);
+        const rootY = this.find(y);
+
+        if (rootX !== rootY) {
+            if (this.rank[rootX] > this.rank[rootY]) {
+                this.parent[rootY] = rootX;
+            } else if (this.rank[rootX] < this.rank[rootY]) {
+                this.parent[rootX] = rootY;
+            } else {
+                this.parent[rootY] = rootX;
+                this.rank[rootX]++;
+            }
+        }
+    }
+}
+
+// Kruskal's Algorithm
+function kruskal(n, edges) {
+    edges.sort((a, b) => a.weight - b.weight);
+
+    const ds = new DisjointSet(n);
+    const mst = [];
+    let ecounter = 0;
+
+    for (const edge of edges) {
+        if (ds.find(edge.u) !== ds.find(edge.v)) {
+            mst.push(edge);
+            ds.unite(edge.u, edge.v);
+            ecounter++;
+        }
+        if (ecounter === n - 1) break;
+    }
+
+    return mst;
+}
+
+// Function to initialize the graph
+function initializeGraph() {
+    const nodes = parseInt(document.getElementById('nodes').value);
+    const edgesInput = document.getElementById('edges').value.split(';');
+    const edges = edgesInput.map(edge => {
+        const [u, v, weight] = edge.split(',').map(Number);
+        return { u, v, weight };
+    });
+
+    window.graph = { nodes, edges };
+    document.getElementById('mst-result').innerHTML = '';
+    document.getElementById('disjoint-set-display').innerText = '';
+}
+
+// Function to run Kruskal's Algorithm
+function runKruskal() {
+    if (!window.graph) {
+        alert('Please initialize the graph first.');
+        return;
+    }
+
+    const { nodes, edges } = window.graph;
+    const mst = kruskal(nodes, edges);
+
+    // Display the Minimum Spanning Tree (MST)
+    const mstResult = document.getElementById('mst-result');
+    mstResult.innerHTML = mst.map(edge => `<li>${edge.u} - ${edge.v} : ${edge.weight}</li>`).join('');
+
+    // Display the Disjoint Set (Union-Find) states
+    const disjointSetDisplay = document.getElementById('disjoint-set-display');
+    const ds = new DisjointSet(nodes);
+    edges.forEach(edge => {
+        ds.unite(edge.u, edge.v);
+    });
+
+    disjointSetDisplay.innerText = `Final Disjoint Set Parent Array: ${ds.parent.join(', ')}`;
+}
+
+</script>
+
+</body>
+</html>

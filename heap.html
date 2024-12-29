@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heap-Based Waste Collection System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px 12px;
+            text-align: center;
+        }
+        button {
+            margin: 10px 0;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Waste Collection System</h1>
+<p>Simulate the waste collection process based on the amount of waste in districts using a max-heap (priority queue).</p>
+
+<div>
+    <h3>Add Districts with Waste Amount:</h3>
+    <form id="addDistrictForm">
+        <label for="districtId">District ID:</label>
+        <input type="number" id="districtId" required>
+        <label for="wasteAmount">Waste Amount:</label>
+        <input type="number" id="wasteAmount" required>
+        <button type="submit">Add District</button>
+    </form>
+</div>
+
+<div>
+    <h3>Districts to be Collected:</h3>
+    <table id="districtTable">
+        <thead>
+            <tr>
+                <th>District ID</th>
+                <th>Waste Amount</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <button onclick="collectWaste()">Collect Waste</button>
+</div>
+
+<div id="collectionLog">
+    <h3>Collection Log:</h3>
+    <ul id="logList"></ul>
+</div>
+
+<script>
+// Priority Queue Implementation using Max Heap
+class MaxHeap {
+    constructor() {
+        this.heap = [];
+    }
+
+    insert(district) {
+        this.heap.push(district);
+        this.heapifyUp();
+    }
+
+    heapifyUp() {
+        let index = this.heap.length - 1;
+        while (index > 0) {
+            let parentIndex = Math.floor((index - 1) / 2);
+            if (this.heap[parentIndex].waste >= this.heap[index].waste) break;
+            [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];
+            index = parentIndex;
+        }
+    }
+
+    extractMax() {
+        if (this.heap.length === 0) return null;
+        const max = this.heap[0];
+        const last = this.heap.pop();
+        if (this.heap.length > 0) {
+            this.heap[0] = last;
+            this.heapifyDown();
+        }
+        return max;
+    }
+
+    heapifyDown() {
+        let index = 0;
+        const length = this.heap.length;
+        while (index < length) {
+            let leftChild = 2 * index + 1;
+            let rightChild = 2 * index + 2;
+            let largest = index;
+
+            if (leftChild < length && this.heap[leftChild].waste > this.heap[largest].waste) {
+                largest = leftChild;
+            }
+
+            if (rightChild < length && this.heap[rightChild].waste > this.heap[largest].waste) {
+                largest = rightChild;
+            }
+
+            if (largest === index) break;
+
+            [this.heap[index], this.heap[largest]] = [this.heap[largest], this.heap[index]];
+            index = largest;
+        }
+    }
+
+    size() {
+        return this.heap.length;
+    }
+}
+
+const maxHeap = new MaxHeap();
+const districtTable = document.getElementById('districtTable').getElementsByTagName('tbody')[0];
+const logList = document.getElementById('logList');
+
+// Function to add districts
+document.getElementById('addDistrictForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const districtId = document.getElementById('districtId').value;
+    const wasteAmount = document.getElementById('wasteAmount').value;
+    
+    const district = { id: districtId, waste: parseInt(wasteAmount) };
+    maxHeap.insert(district);
+    
+    const row = districtTable.insertRow();
+    row.insertCell(0).textContent = districtId;
+    row.insertCell(1).textContent = wasteAmount;
+    
+    document.getElementById('districtId').value = '';
+    document.getElementById('wasteAmount').value = '';
+});
+
+// Function to simulate waste collection
+function collectWaste() {
+    if (maxHeap.size() === 0) {
+        alert('No districts left to collect!');
+        return;
+    }
+
+    const district = maxHeap.extractMax();
+    const logItem = document.createElement('li');
+    logItem.textContent = `Collecting waste from District ${district.id} with ${district.waste} units.`;
+    logList.appendChild(logItem);
+
+    updateDistrictTable();
+}
+
+// Function to update the district table after each collection
+function updateDistrictTable() {
+    const rows = districtTable.rows;
+    while (rows.length > 0) {
+        districtTable.deleteRow(0);
+    }
+
+    maxHeap.heap.forEach(district => {
+        const row = districtTable.insertRow();
+        row.insertCell(0).textContent = district.id;
+        row.insertCell(1).textContent = district.waste;
+    });
+}
+</script>
+
+</body>
+</html>

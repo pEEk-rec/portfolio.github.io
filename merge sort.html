@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sort for Sorting Urban Spaces</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input[type="number"], button {
+            margin: 5px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .array-display {
+            margin-top: 20px;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Merge Sort for Sorting Urban Spaces Based on Criteria</h1>
+
+<div>
+    <label for="input-array">Enter urban space values (comma-separated, e.g., area sizes or accessibility scores): </label>
+    <input type="text" id="input-array" value="38,27,43,3,9,82,10">
+    <button onclick="sortArray()">Sort Array</button>
+</div>
+
+<div class="result">
+    <label for="sorted-result">Sorted Result: </label>
+    <p id="sorted-result">No data sorted yet.</p>
+</div>
+
+<div class="array-display">
+    <h3>Current Array:</h3>
+    <pre id="array-display">No data yet</pre>
+</div>
+
+<script>
+    function mergeSort(arr) {
+        if (arr.length <= 1) {
+            return arr;
+        }
+
+        const mid = Math.floor(arr.length / 2);
+        const left = mergeSort(arr.slice(0, mid));
+        const right = mergeSort(arr.slice(mid));
+
+        return merge(left, right);
+    }
+
+    function merge(left, right) {
+        let result = [];
+        let i = 0;
+        let j = 0;
+
+        while (i < left.length && j < right.length) {
+            if (left[i] <= right[j]) {
+                result.push(left[i]);
+                i++;
+            } else {
+                result.push(right[j]);
+                j++;
+            }
+        }
+
+        return result.concat(left.slice(i), right.slice(j));
+    }
+
+    function sortArray() {
+        const input = document.getElementById("input-array").value;
+        const arr = input.split(',').map(Number);
+
+        // Display the original array
+        document.getElementById("array-display").innerText = `Original Array: [${arr.join(', ')}]`;
+
+        const sortedArr = mergeSort(arr);
+
+        // Display the sorted array
+        document.getElementById("sorted-result").innerText = `[${sortedArr.join(', ')}]`;
+        document.getElementById("array-display").innerText += `\nSorted Array: [${sortedArr.join(', ')}]`;
+    }
+</script>
+
+</body>
+</html>

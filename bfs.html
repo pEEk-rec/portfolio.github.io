@@ -3,148 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waste Collection BFS</title>
+    <title>Breadth First Search for Waste Collection</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            font-size: 1.5em;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        select, button {
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
+            margin: 20px;
         }
         button {
-            background-color: #4CAF50;
-            color: white;
+            padding: 10px;
+            margin-top: 10px;
             cursor: pointer;
         }
-        button:hover {
-            background-color: #45a049;
-        }
-        .output {
-            background-color: #e6ffe6;
-            padding: 15px;
-            border-radius: 8px;
+        table {
             margin-top: 20px;
-            white-space: pre-wrap;
-            font-family: 'Courier New', monospace;
+            border-collapse: collapse;
+            width: 50%;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-<header>
-    BFS for Waste Collection and Management
-</header>
+<h1>Waste Collection Using BFS</h1>
+<p>Simulate waste collection from a central neighborhood to adjacent ones using Breadth-First Search (BFS).</p>
 
-<div class="container">
-    <h2>City Waste Collection Graph</h2>
-    <p>The city is represented as a graph where:</p>
-    <ul>
-        <li><b>Nodes:</b> Waste collection points (neighborhoods, blocks, or facilities).</li>
-        <li><b>Edges:</b> Roads or paths connecting these points.</li>
-        <li><b>Edge Weights:</b> Represent travel time or distance (not used in BFS).</li>
-    </ul>
-    <p><b>Neighborhoods:</b></p>
-    <ol>
-        <li>Central Depot</li>
-        <li>Residential Area 1</li>
-        <li>Industries</li>
-        <li>Residential Area 2</li>
-        <li>City Centre</li>
-        <li>Urban Area 1</li>
-        <li>Urban Area 2</li>
-        <li>Farmland</li>
-    </ol>
+<h3>Graph Representation of Neighborhoods:</h3>
+<p>Each node represents a neighborhood, and edges represent roads between them. Waste collection will start from a central hub (node 0).</p>
 
-    <label for="source">Select the starting point for waste collection:</label>
-    <select id="source">
-        <option value="0">Central Depot</option>
-        <option value="1">Residential Area 1</option>
-        <option value="2">Industries</option>
-        <option value="3">Residential Area 2</option>
-        <option value="4">City Centre</option>
-        <option value="5">Urban Area 1</option>
-        <option value="6">Urban Area 2</option>
-        <option value="7">Farmland</option>
-    </select>
-    <button onclick="performBFS()">Start BFS</button>
+<div>
+    <h3>Menu</h3>
+    <button onclick="startBFS()">Start BFS for Waste Collection</button>
+</div>
 
-    <div class="output" id="output">
-        <!-- BFS Traversal output will be displayed here -->
-    </div>
+<div id="bfsOutput" style="margin-top: 20px;">
+    <h3>Output:</h3>
+    <ul id="logList"></ul>
+</div>
+
+<div id="graphDisplay">
+    <h3>Neighborhood Connections (Graph):</h3>
+    <table id="graphTable">
+        <thead>
+            <tr>
+                <th>Node</th>
+                <th>Adjacent Nodes (Roads)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table content will be populated by JavaScript -->
+        </tbody>
+    </table>
 </div>
 
 <script>
-    // City graph adjacency matrix
-    const cityGraph = [
-        [0, 1, 1, 0, 0, 0, 0, 0],
-        [1, 0, 0, 1, 1, 0, 0, 0],
-        [1, 0, 0, 0, 1, 1, 0, 0],
-        [0, 1, 0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 0, 0, 1, 0, 0],
-        [0, 0, 1, 0, 1, 0, 1, 0],
-        [0, 0, 0, 0, 0, 1, 0, 1],
-        [0, 0, 0, 0, 0, 0, 1, 0]
-    ];
+// Representation of the graph as an adjacency list
+let adj = {
+    0: [1, 2],  // Neighborhood 0 connects to 1 and 2
+    1: [0, 3, 4], // Neighborhood 1 connects to 0, 3, and 4
+    2: [0, 4],  // Neighborhood 2 connects to 0 and 4
+    3: [1],  // Neighborhood 3 connects to 1
+    4: [1, 2]  // Neighborhood 4 connects to 1 and 2
+};
 
-    const neighborhoods = [
-        "Central Depot",
-        "Residential Area 1",
-        "Industries",
-        "Residential Area 2",
-        "City Centre",
-        "Urban Area 1",
-        "Urban Area 2",
-        "Farmland"
-    ];
+// Function to perform BFS
+function bfs(graph, startNode) {
+    let visited = Array(Object.keys(graph).length).fill(false);
+    let queue = [startNode];
+    let result = [];
 
-    function performBFS() {
-        const source = parseInt(document.getElementById('source').value);
-        const visited = Array(cityGraph.length).fill(false);
-        const queue = [];
-        const outputDiv = document.getElementById('output');
-        let output = "BFS Traversal for Waste Collection:\n";
+    visited[startNode] = true;
 
-        // Initialize BFS
-        queue.push(source);
-        visited[source] = true;
+    while (queue.length > 0) {
+        let currentNode = queue.shift();
+        result.push(currentNode);
 
-        while (queue.length > 0) {
-            const current = queue.shift();
-            output += `Collecting waste at ${neighborhoods[current]}\n`;
-
-            for (let i = 0; i < cityGraph.length; i++) {
-                if (cityGraph[current][i] === 1 && !visited[i]) {
-                    visited[i] = true;
-                    queue.push(i);
-                }
+        for (let neighbor of graph[currentNode]) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                queue.push(neighbor);
             }
         }
-
-        outputDiv.textContent = output;
     }
+    
+    return result;
+}
+
+// Function to display the BFS output
+function startBFS() {
+    let result = bfs(adj, 0);  // Start BFS from node 0
+    logOutput(`Waste collection path: ${result.join(' -> ')}`);
+}
+
+// Function to log output to the UI
+function logOutput(message) {
+    const logList = document.getElementById('logList');
+    const listItem = document.createElement('li');
+    listItem.textContent = message;
+    logList.appendChild(listItem);
+}
+
+// Function to display the graph as a table
+function displayGraph() {
+    const table = document.getElementById('graphTable').getElementsByTagName('tbody')[0];
+    for (let node in adj) {
+        let row = document.createElement('tr');
+        let cell1 = document.createElement('td');
+        let cell2 = document.createElement('td');
+        cell1.textContent = node;
+        cell2.textContent = adj[node].join(', ');
+        row.appendChild(cell1);
+        row.appendChild(cell2);
+        table.appendChild(row);
+    }
+}
+
+// Initialize the graph table on page load
+window.onload = displayGraph;
 </script>
 
 </body>

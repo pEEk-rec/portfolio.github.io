@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVL Tree - Waste Collection Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            margin: 5px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .tree {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>AVL Tree for Waste Collection Management</h1>
+
+<div>
+    <label for="insertKey">Insert a Waste Collection Point (ID):</label>
+    <input type="number" id="insertKey" placeholder="Enter ID">
+    <button onclick="insertNode()">Insert</button>
+</div>
+
+<div class="result">
+    <h3>Inorder Traversal of the AVL Tree:</h3>
+    <div id="inorderResult"></div>
+</div>
+
+<div class="tree">
+    <h3>Tree Visualization:</h3>
+    <div id="treeVisualization"></div>
+</div>
+
+<script>
+// Node class for AVL Tree
+class Node {
+    constructor(key) {
+        this.key = key;
+        this.left = null;
+        this.right = null;
+        this.height = 1;
+    }
+}
+
+// AVL Tree class
+class AVLTree {
+    constructor() {
+        this.root = null;
+    }
+
+    // Get height of node
+    height(node) {
+        if (!node) return 0;
+        return node.height;
+    }
+
+    // Get balance factor
+    getBalance(node) {
+        if (!node) return 0;
+        return this.height(node.left) - this.height(node.right);
+    }
+
+    // Right rotate
+    rightRotate(y) {
+        const x = y.left;
+        const T2 = x.right;
+
+        x.right = y;
+        y.left = T2;
+
+        y.height = Math.max(this.height(y.left), this.height(y.right)) + 1;
+        x.height = Math.max(this.height(x.left), this.height(x.right)) + 1;
+
+        return x;
+    }
+
+    // Left rotate
+    leftRotate(x) {
+        const y = x.right;
+        const T2 = y.left;
+
+        y.left = x;
+        x.right = T2;
+
+        x.height = Math.max(this.height(x.left), this.height(x.right)) + 1;
+        y.height = Math.max(this.height(y.left), this.height(y.right)) + 1;
+
+        return y;
+    }
+
+    // Insert node
+    insert(node, key) {
+        if (!node) return new Node(key);
+
+        if (key < node.key) {
+            node.left = this.insert(node.left, key);
+        } else if (key > node.key) {
+            node.right = this.insert(node.right, key);
+        } else {
+            return node;
+        }
+
+        node.height = Math.max(this.height(node.left), this.height(node.right)) + 1;
+
+        const balance = this.getBalance(node);
+
+        if (balance > 1 && key < node.left.key) {
+            return this.rightRotate(node);
+        }
+        if (balance < -1 && key > node.right.key) {
+            return this.leftRotate(node);
+        }
+        if (balance > 1 && key > node.left.key) {
+            node.left = this.leftRotate(node.left);
+            return this.rightRotate(node);
+        }
+        if (balance < -1 && key < node.right.key) {
+            node.right = this.rightRotate(node.right);
+            return this.leftRotate(node);
+        }
+
+        return node;
+    }
+
+    // Inorder traversal
+    inorder(root, result = []) {
+        if (root !== null) {
+            this.inorder(root.left, result);
+            result.push(root.key);
+            this.inorder(root.right, result);
+        }
+        return result;
+    }
+
+    // Insert function for AVL Tree
+    insertKey(key) {
+        this.root = this.insert(this.root, key);
+    }
+
+    // Get inorder traversal
+    getInorder() {
+        return this.inorder(this.root).join(' ');
+    }
+}
+
+const avlTree = new AVLTree();
+
+// Insert node from user input
+function insertNode() {
+    const key = parseInt(document.getElementById('insertKey').value);
+    if (!isNaN(key)) {
+        avlTree.insertKey(key);
+        updateResults();
+    }
+}
+
+// Update the results section with inorder traversal and tree visualization
+function updateResults() {
+    document.getElementById('inorderResult').innerText = `Inorder Traversal: ${avlTree.getInorder()}`;
+    visualizeTree(avlTree.root);
+}
+
+// Visualize the tree in a simple way
+function visualizeTree(node) {
+    const treeDiv = document.getElementById('treeVisualization');
+    treeDiv.innerHTML = '';
+    if (!node) {
+        treeDiv.innerHTML = 'Tree is empty';
+        return;
+    }
+
+    const createTreeHTML = (node) => {
+        if (!node) return '';
+        const left = createTreeHTML(node.left);
+        const right = createTreeHTML(node.right);
+
+        return `<div class="node">
+                    <span>${node.key}</span>
+                    <div class="children">
+                        <div class="left">${left}</div>
+                        <div class="right">${right}</div>
+                    </div>
+                </div>`;
+    };
+
+    treeDiv.innerHTML = createTreeHTML(node);
+}
+
+// Initial setup
+updateResults();
+
+</script>
+
+</body>
+</html>
