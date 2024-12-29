@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Usage Categorization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .code-block {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Implementation 2: Electricity Usage Categorization</h1>
+    <p>This program separates houses into two categories based on their electricity consumption and provides recommendations for energy saving.</p>
+
+    <h2>Example Code</h2>
+    <div class="code-block">
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int partition(vector&lt;pair&lt;string, int&gt;&gt;&amp; houses, int low, int high) {
+    int pivot = houses[high].second;
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+        if (houses[j].second <= pivot) {
+            i++;
+            swap(houses[i], houses[j]);
+        }
+    }
+    swap(houses[i + 1], houses[high]);
+    return i + 1;
+}
+
+void quickSort(vector&lt;pair&lt;string, int&gt;&gt;&amp; houses, int low, int high) {
+    if (low < high) {
+        int pi = partition(houses, low, high);
+        quickSort(houses, low, pi - 1);
+        quickSort(houses, pi + 1, high);
+    }
+}
+
+int main() {
+    vector&lt;pair&lt;string, int&gt;&gt; houses = {
+        {"House A", 180}, {"House B", 250}, {"House C", 90}
+    };
+
+    vector&lt;pair&lt;string, int&gt;&gt; over200, under200;
+    for (const auto&amp; house : houses) {
+        if (house.second > 200)
+            over200.push_back(house);
+        else
+            under200.push_back(house);
+    }
+
+    quickSort(over200, 0, over200.size() - 1);
+    quickSort(under200, 0, under200.size() - 1);
+
+    cout &lt;&lt; "Houses consuming more than 200 units (sorted):\n";
+    for (const auto&amp; house : over200) {
+        cout &lt;&lt; house.first &lt;&lt; " - " &lt;&lt; house.second &lt;&lt; " units\n";
+    }
+
+    cout &lt;&lt; "Houses consuming 200 units or less (sorted):\n";
+    for (const auto&amp; house : under200) {
+        cout &lt;&lt; house.first &lt;&lt; " - " &lt;&lt; house.second &lt;&lt; " units\n";
+    }
+
+    return 0;
+}
+        </pre>
+    </div>
+
+    <a href="index.html">Back to Main Page</a>
+</body>
+</html>

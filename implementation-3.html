@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Directory Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #c8e6c9;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #1b5e20;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background-color: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .highlight {
+            color: #388e3c;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    Service Directory Management in a Smart City
+</header>
+
+<div class="container">
+    <section>
+        <h2>Purpose of Service Directory Management</h2>
+        <p>
+            The main purpose of <span class="highlight">Service Directory Management</span> is to organize, track, and efficiently manage the services available to the residents and businesses within a city. This system ensures that citizens can easily access and use various public and private services, from healthcare to education to utilities.
+        </p>
+        <p>
+            Data from service directory usage can help urban planners and decision-makers understand the needs and behaviors of the population.
+        </p>
+    </section>
+
+    <section>
+        <h2>Operations in Service Directory Management</h2>
+        <ul>
+            <li><span class="highlight">Insertions:</span> Adding new services or businesses (like new hospitals, schools, supermarkets, etc.).</li>
+            <li><span class="highlight">Deletions:</span> Removing services that are closed, relocated, or no longer needed.</li>
+            <li><span class="highlight">Searches:</span> Quickly finding a particular service based on its name or type.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Why Use Skip Lists?</h2>
+        <h3>Efficient Search Operations:</h3>
+        <p>
+            Skip lists allow for faster search times compared to simple linked lists. This is because they combine the features of linked lists and binary search trees, giving you logarithmic search time on average (<span class="highlight">O(log n)</span>), whereas a simple linked list would take linear time (<span class="highlight">O(n)</span>).
+        </p>
+
+        <h3>Dynamic Insertions and Deletions:</h3>
+        <p>
+            Skip lists are particularly suitable when there are frequent insertions and deletions (which is common in dynamic service directories). A new service can be added (<span class="highlight">insertion</span>) and an existing service can be removed (<span class="highlight">deletion</span>) efficiently.
+        </p>
+    </section>
+</div>
+
+<footer>
+    &copy; 2024 Smart City Initiative
+</footer>
+
+</body>
+</html>

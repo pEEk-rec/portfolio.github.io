@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Collection BFS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        select, button {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .output {
+            background-color: #e6ffe6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    BFS for Waste Collection and Management
+</header>
+
+<div class="container">
+    <h2>City Waste Collection Graph</h2>
+    <p>The city is represented as a graph where:</p>
+    <ul>
+        <li><b>Nodes:</b> Waste collection points (neighborhoods, blocks, or facilities).</li>
+        <li><b>Edges:</b> Roads or paths connecting these points.</li>
+        <li><b>Edge Weights:</b> Represent travel time or distance (not used in BFS).</li>
+    </ul>
+    <p><b>Neighborhoods:</b></p>
+    <ol>
+        <li>Central Depot</li>
+        <li>Residential Area 1</li>
+        <li>Industries</li>
+        <li>Residential Area 2</li>
+        <li>City Centre</li>
+        <li>Urban Area 1</li>
+        <li>Urban Area 2</li>
+        <li>Farmland</li>
+    </ol>
+
+    <label for="source">Select the starting point for waste collection:</label>
+    <select id="source">
+        <option value="0">Central Depot</option>
+        <option value="1">Residential Area 1</option>
+        <option value="2">Industries</option>
+        <option value="3">Residential Area 2</option>
+        <option value="4">City Centre</option>
+        <option value="5">Urban Area 1</option>
+        <option value="6">Urban Area 2</option>
+        <option value="7">Farmland</option>
+    </select>
+    <button onclick="performBFS()">Start BFS</button>
+
+    <div class="output" id="output">
+        <!-- BFS Traversal output will be displayed here -->
+    </div>
+</div>
+
+<script>
+    // City graph adjacency matrix
+    const cityGraph = [
+        [0, 1, 1, 0, 0, 0, 0, 0],
+        [1, 0, 0, 1, 1, 0, 0, 0],
+        [1, 0, 0, 0, 1, 1, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0],
+        [0, 1, 1, 0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 1, 0, 1, 0],
+        [0, 0, 0, 0, 0, 1, 0, 1],
+        [0, 0, 0, 0, 0, 0, 1, 0]
+    ];
+
+    const neighborhoods = [
+        "Central Depot",
+        "Residential Area 1",
+        "Industries",
+        "Residential Area 2",
+        "City Centre",
+        "Urban Area 1",
+        "Urban Area 2",
+        "Farmland"
+    ];
+
+    function performBFS() {
+        const source = parseInt(document.getElementById('source').value);
+        const visited = Array(cityGraph.length).fill(false);
+        const queue = [];
+        const outputDiv = document.getElementById('output');
+        let output = "BFS Traversal for Waste Collection:\n";
+
+        // Initialize BFS
+        queue.push(source);
+        visited[source] = true;
+
+        while (queue.length > 0) {
+            const current = queue.shift();
+            output += `Collecting waste at ${neighborhoods[current]}\n`;
+
+            for (let i = 0; i < cityGraph.length; i++) {
+                if (cityGraph[current][i] === 1 && !visited[i]) {
+                    visited[i] = true;
+                    queue.push(i);
+                }
+            }
+        }
+
+        outputDiv.textContent = output;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Services and Electricity Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h2 {
+            margin-top: 40px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .code-block {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>SEARCHING ALGORITHM FOR SEARCHING CITY SERVICES</h1>
+    
+    <h2>Overview</h2>
+    <p>This program implements a simple search algorithm for finding city services based on the user’s query. It uses an unordered map in C++ to efficiently store and retrieve service details like type, number, and rating.</p>
+    
+    <h2>Data Representation</h2>
+    <p>The city services are stored in an <code>unordered_map</code> with the following structure:</p>
+    <ul>
+        <li><strong>Key:</strong> Service type (e.g., "hospital", "school").</li>
+        <li><strong>Value:</strong> A structure containing:
+            <ul>
+                <li><strong>Name:</strong> Display name of the service.</li>
+                <li><strong>Number:</strong> Total number of locations in the city.</li>
+                <li><strong>Rating:</strong> Average user rating for the service.</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <h2>Search Mechanism</h2>
+    <ol>
+        <li>The user inputs the type of service they are looking for (e.g., "hospital").</li>
+        <li>The input is converted to lowercase for case-insensitive comparison.</li>
+        <li>The program searches the <code>unordered_map</code> for a matching service type.</li>
+        <li>
+            If the service is found:
+            <ul>
+                <li>It displays the service name, total locations, and average rating.</li>
+            </ul>
+        </li>
+        <li>
+            If the service is not found:
+            <ul>
+                <li>The program informs the user that the service is unavailable or the query is incorrect.</li>
+            </ul>
+        </li>
+    </ol>
+    
+    <h2>Example Code</h2>
+    <div class="code-block">
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;unordered_map&gt;
+using namespace std;
+
+struct Service {
+    string name;
+    int number;
+    double rating;
+};
+
+int main() {
+    unordered_map&lt;string, Service&gt; cityServices = {
+        {"hospital", {"Hospitals", 10, 4.5}},
+        {"school", {"Schools", 15, 4.3}},
+        {"restaurant", {"Restaurants", 25, 4.2}}
+    };
+
+    string query;
+    cout &lt;&lt; "Enter the type of service you are looking for: ";
+    getline(cin, query);
+
+    for (char&amp; c : query) c = tolower(c);
+
+    if (cityServices.find(query) != cityServices.end()) {
+        Service foundService = cityServices[query];
+        cout &lt;&lt; "\nService Found: " &lt;&lt; foundService.name &lt;&lt; endl;
+        cout &lt;&lt; "Number of locations: " &lt;&lt; foundService.number &lt;&lt; endl;
+        cout &lt;&lt; "Average rating: " &lt;&lt; foundService.rating &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "\nService not found. Please check the spelling or try a different query." &lt;&lt; endl;
+    }
+
+    return 0;
+}
+        </pre>
+    </div>
+
+    <h2>Implementation-2: Electricity Usage Categorization</h2>
+    
+    <h2>Brief Description of the Problem</h2>
+    <p>The goal is to separate houses into two categories based on their electricity usage:</p>
+    <ul>
+        <li><strong>200 units or less:</strong> Houses qualify for free electricity under the state's policy.</li>
+        <li><strong>More than 200 units:</strong> Houses are charged according to regular tariffs.</li>
+    </ul>
+    <p>After categorization, recommendations are provided to high-consumption houses to save energy. Additionally, sorting the data enables better analysis, such as ranking the houses by consumption.</p>
+    
+    <h2>Benefits of Sorting Over Iteration</h2>
+    <ul>
+        <li><strong>Easy Analysis:</strong> Sorting helps identify patterns and clusters, such as top consumers.</li>
+        <li><strong>Efficient Searching:</strong> Sorted data enables binary search for specific consumption ranges, reducing search time.</li>
+    </ul>
+    
+    <h2>Example Code</h2>
+    <div class="code-block">
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int partition(vector&lt;pair&lt;string, int&gt;&gt;&amp; houses, int low, int high) {
+    int pivot = houses[high].second;
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+        if (houses[j].second <= pivot) {
+            i++;
+            swap(houses[i], houses[j]);
+        }
+    }
+    swap(houses[i + 1], houses[high]);
+    return i + 1;
+}
+
+void quickSort(vector&lt;pair&lt;string, int&gt;&gt;&amp; houses, int low, int high) {
+    if (low < high) {
+        int pi = partition(houses, low, high);
+        quickSort(houses, low, pi - 1);
+        quickSort(houses, pi + 1, high);
+    }
+}
+
+int main() {
+    vector&lt;pair&lt;string, int&gt;&gt; houses = {
+        {"House A", 180}, {"House B", 250}, {"House C", 90}
+    };
+
+    vector&lt;pair&lt;string, int&gt;&gt; over200, under200;
+    for (const auto&amp; house : houses) {
+        if (house.second > 200)
+            over200.push_back(house);
+        else
+            under200.push_back(house);
+    }
+
+    quickSort(over200, 0, over200.size() - 1);
+    quickSort(under200, 0, under200.size() - 1);
+
+    cout &lt;&lt; "Houses consuming more than 200 units (sorted):\n";
+    for (const auto&amp; house : over200) {
+        cout &lt;&lt; house.first &lt;&lt; " - " &lt;&lt; house.second &lt;&lt; " units\n";
+    }
+
+    cout &lt;&lt; "Houses consuming 200 units or less (sorted):\n";
+    for (const auto&amp; house : under200) {
+        cout &lt;&lt; house.first &lt;&lt; " - " &lt;&lt; house.second &lt;&lt; " units\n";
+    }
+
+    return 0;
+}
+        </pre>
+    </div>
+</body>
+</html>

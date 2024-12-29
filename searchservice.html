@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Services Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f7e6;
+            color: #2d572c;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        .dropdown select {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+        }
+        .code-box {
+            background-color: #333;
+            color: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    City Services Search System
+</header>
+
+<div class="container">
+    <h2>City Services Code</h2>
+    <div class="dropdown">
+        <label for="code-view">Select Service Code:</label>
+        <select id="code-view">
+            <option value="service-code">C++ Code</option>
+            <!-- Add more options here if needed -->
+        </select>
+    </div>
+
+    <div class="code-box" id="code-box">
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;unordered_map&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+// Service structure
+struct Service {
+    string name;
+    int number;
+    double rating;
+};
+
+int main() {
+    // Data: city services
+    unordered_map&lt;string, Service&gt; cityServices = {
+        {"hospital", {"Hospitals", 10, 4.5}},
+        {"police station", {"Police Stations", 5, 4.8}},
+        {"school", {"Schools", 15, 4.3}},
+        {"supermarket", {"Supermarkets", 20, 4.4}},
+        {"shopping mall", {"Shopping Malls", 7, 4.6}},
+        {"restaurant", {"Restaurants", 25, 4.2}},
+        {"fire station", {"Fire Stations", 3, 4.7}},
+        {"local market", {"Local Markets", 12, 4.1}},
+        {"pharmacy", {"Pharmacies", 18, 4.6}},
+        {"hardware store", {"Hardware Stores", 6, 4.0}},
+        {"grocery store", {"Grocery Stores", 22, 4.3}},
+        {"university", {"Universities", 4, 4.9}},
+        {"bank", {"Banks", 10, 4.5}},
+        {"transportation", {"Transportation Services", 8, 4.2}},
+        {"utility service", {"Utility Services", 6, 4.4}},
+        {"public park", {"Public Parks", 10, 4.8}},
+        {"business service", {"Business Services", 5, 4.0}},
+        {"public library", {"Public Libraries", 3, 4.7}},
+        {"gas station", {"Gas Stations", 9, 4.3}},
+        {"museum", {"Museums", 2, 4.9}},
+        {"multiplex", {"Multiplexes", 4, 4.5}},
+        {"public toilet", {"Public Toilets", 15, 4.0}},
+        {"water service", {"Water Services", 4, 4.6}}
+    };
+
+    // User query
+    string query;
+    cout &lt;&lt; "Enter the type of service you are looking for: ";
+    getline(cin, query);
+
+    // Convert query to lowercase for case-insensitive search
+    for (char& c : query) c = tolower(c);
+
+    // Search for the service
+    if (cityServices.find(query) != cityServices.end()) {
+        Service foundService = cityServices[query];
+        cout &lt;&lt; "\nService Found: " &lt;&lt; foundService.name &lt;&lt; endl;
+        cout &lt;&lt; "Number of locations: " &lt;&lt; foundService.number &lt;&lt; endl;
+        cout &lt;&lt; "Average rating: " &lt;&lt; foundService.rating &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "\nService not found. Please check the spelling or try a different query." &lt;&lt; endl;
+    }
+
+    return 0;
+}
+        </pre>
+    </div>
+</div>
+
+<script>
+    document.getElementById('code-view').addEventListener('change', function() {
+        const selectedValue = this.value;
+        const codeBox = document.getElementById('code-box');
+        
+        // You can dynamically change the code or add more options as needed
+        if (selectedValue === 'service-code') {
+            codeBox.innerHTML = `
+#include &lt;iostream&gt;
+#include &lt;unordered_map&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+// Service structure
+struct Service {
+    string name;
+    int number;
+    double rating;
+};
+
+int main() {
+    // Data: city services
+    unordered_map&lt;string, Service&gt; cityServices = {
+        {"hospital", {"Hospitals", 10, 4.5}},
+        {"police station", {"Police Stations", 5, 4.8}},
+        {"school", {"Schools", 15, 4.3}},
+        {"supermarket", {"Supermarkets", 20, 4.4}},
+        {"shopping mall", {"Shopping Malls", 7, 4.6}},
+        {"restaurant", {"Restaurants", 25, 4.2}},
+        {"fire station", {"Fire Stations", 3, 4.7}},
+        {"local market", {"Local Markets", 12, 4.1}},
+        {"pharmacy", {"Pharmacies", 18, 4.6}},
+        {"hardware store", {"Hardware Stores", 6, 4.0}},
+        {"grocery store", {"Grocery Stores", 22, 4.3}},
+        {"university", {"Universities", 4, 4.9}},
+        {"bank", {"Banks", 10, 4.5}},
+        {"transportation", {"Transportation Services", 8, 4.2}},
+        {"utility service", {"Utility Services", 6, 4.4}},
+        {"public park", {"Public Parks", 10, 4.8}},
+        {"business service", {"Business Services", 5, 4.0}},
+        {"public library", {"Public Libraries", 3, 4.7}},
+        {"gas station", {"Gas Stations", 9, 4.3}},
+        {"museum", {"Museums", 2, 4.9}},
+        {"multiplex", {"Multiplexes", 4, 4.5}},
+        {"public toilet", {"Public Toilets", 15, 4.0}},
+        {"water service", {"Water Services", 4, 4.6}}
+    };
+
+    // User query
+    string query;
+    cout &lt;&lt; "Enter the type of service you are looking for: ";
+    getline(cin, query);
+
+    // Convert query to lowercase for case-insensitive search
+    for (char& c : query) c = tolower(c);
+
+    // Search for the service
+    if (cityServices.find(query) != cityServices.end()) {
+        Service foundService = cityServices[query];
+        cout &lt;&lt; "\nService Found: " &lt;&lt; foundService.name &lt;&lt; endl;
+        cout &lt;&lt; "Number of locations: " &lt;&lt; foundService.number &lt;&lt; endl;
+        cout &lt;&lt; "Average rating: " &lt;&lt; foundService.rating &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "\nService not found. Please check the spelling or try a different query." &lt;&lt; endl;
+    }
+
+    return 0;
+}
+            `;
+        }
+    });
+</script>
+
+</body>
+</html>
