@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kruskal's Algorithm for Electric Grid Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+        }
+        pre {
+            background: #f4f4f9;
+            padding: 10px;
+            overflow-x: auto;
+            border-left: 3px solid #00b894;
+        }
+        code {
+            font-family: Consolas, monospace;
+            color: #d63031;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Applying Kruskal's Algorithm</h1>
+        <img src="/mnt/data/Screenshot%202024-12-29%20222204.png" alt="City Map for Electric Grid Layout">
+        <img src="/mnt/data/rotated_image.jpg" alt="Graph Representation for Kruskal's Algorithm">
+        <p>
+            Nodes (Vertices): Represent substations, transformers, or areas that need to be connected.<br>
+            Edges: Represent potential power lines between nodes with associated costs (distance, installation expense, or transmission efficiency).<br>
+            Edge Weights: These could represent cost factors such as the distance between locations, terrain difficulty, or materials cost.
+        </p>
+        <h2>Steps in Kruskal's Algorithm</h2>
+        <p>
+            <strong>Sort Edges by Weight:</strong><br>
+            All potential connections (edges) are sorted in ascending order of cost.
+        </p>
+        <p>
+            <strong>Add Edges to Form the MST:</strong><br>
+            Start with the smallest edge and add it to the grid layout if it does not create a cycle (ensuring no redundant or unnecessary connections).<br>
+            Use a Union-Find (or Disjoint Set Union) data structure to efficiently track connected components.
+        </p>
+        <p>
+            <strong>Stop When All Nodes Are Connected:</strong><br>
+            Once all nodes are connected, the algorithm terminates. The result is a cost-effective, cycle-free network.
+        </p>
+        <h2>Kruskal's Algorithm Implementation in C++</h2>
+        <pre>
+<code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+// Structure to represent an edge
+struct Edge {
+    int src, dest, weight;
+};
+
+// Structure to represent a graph
+struct Graph {
+    int V, E;
+    vector&lt;Edge&gt; edges;
+};
+
+// Find function for union-find (with path compression)
+int findParent(int parent[], int node) {
+    if (parent[node] != node)
+        parent[node] = findParent(parent, parent[node]);
+    return parent[node];
+}
+
+// Union function for union-find
+void unionSet(int parent[], int rank[], int u, int v) {
+    int uRoot = findParent(parent, u);
+    int vRoot = findParent(parent, v);
+
+    if (rank[uRoot] &lt; rank[vRoot]) {
+        parent[uRoot] = vRoot;
+    } else if (rank[uRoot] &gt; rank[vRoot]) {
+        parent[vRoot] = uRoot;
+    } else {
+        parent[vRoot] = uRoot;
+        rank[uRoot]++;
+    }
+}
+
+// Comparator function for sorting edges
+bool compare(Edge e1, Edge e2) {
+    return e1.weight &lt; e2.weight;
+}
+
+// Kruskal's algorithm
+void kruskalMST(Graph&amp; graph) {
+    int V = graph.V;
+    vector&lt;Edge&gt; result;
+    int parent[V];
+    int rank[V];
+
+    // Initialize parent and rank arrays
+    for (int i = 0; i &lt; V; ++i) {
+        parent[i] = i;
+        rank[i] = 0;
+    }
+
+    // Sort edges by weight
+    sort(graph.edges.begin(), graph.edges.end(), compare);
+
+    for (Edge&amp; edge : graph.edges) {
+        int u = findParent(parent, edge.src);
+        int v = findParent(parent, edge.dest);
+
+        // If including this edge does not form a cycle
+        if (u != v) {
+            result.push_back(edge);
+            unionSet(parent, rank, u, v);
+        }
+    }
+
+    // Print the result
+    cout &lt;&lt; "Edges in the Minimum Spanning Tree:\n";
+    for (Edge&amp; edge : result) {
+        cout &lt;&lt; edge.src &lt;&lt; " -- " &lt;&lt; edge.dest &lt;&lt; " == " &lt;&lt; edge.weight &lt;&lt; endl;
+    }
+}
+
+int main() {
+    // Number of vertices (V) and edges (E)
+    int V = 11; // Nodes: A (0), B (1), ..., K (10)
+    int E = 14; // Total edges
+
+    Graph graph;
+    graph.V = V;
+    graph.E = E;
+
+    // Add edges to the graph
+    graph.edges = {
+        {0, 1, 5},  {1, 2, 12}, {1, 4, 10}, {2, 3, 18},
+        {2, 5, 6},  {3, 8, 22}, {4, 5, 11}, {5, 6, 13},
+        {6, 7, 12}, {7, 8, 14}, {8, 9, 10}, {9, 10, 18},
+        {6, 10, 26}, {2, 8, 29}
+    };
+
+    // Apply Kruskal's algorithm
+    kruskalMST(graph);
+
+    return 0;
+}
+</code>
+        </pre>
+    </div>
+</body>
+</html>
