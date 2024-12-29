@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Expansion Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 1.5em;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            background-color: #e6ffe6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    City Expansion Simulation with DFS
+</header>
+
+<div class="container">
+    <h1>City Expansion Simulation</h1>
+    <h2>Design and Simulation</h2>
+    <p>
+        <strong>Define the city layout as a graph:</strong><br>
+        Each node represents a building, plot, or road junction.<br>
+        Each edge represents a road or connection between two nodes.
+    </p>
+    <p>
+        <strong>Incorporate real-time data:</strong><br>
+        Use data like traffic density, available space, or construction feasibility.<br>
+        Represent these as edge weights or flags on the graph.
+    </p>
+    <p>
+        <strong>Expand functionality for DFS:</strong><br>
+        Simulate city expansion by exploring possible connections to unvisited or undeveloped areas.<br>
+        Avoid conflicts by checking constraints before traversing.
+    </p>
+    <h2>Code</h2>
+    <pre>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+// Number of vertices
+int v = 5;
+// Graph represented as adjacency matrix
+int m[10][10] = {{0, 1, 1, 0, 0}, 
+                 {1, 0, 0, 1, 1},
+                 {1, 0, 0, 0, 1}, 
+                 {0, 1, 0, 0, 0}, 
+                 {0, 1, 1, 0, 0}};
+
+// Visited array
+int visited[10];
+
+// Simulated real-time data (e.g., conflict check for expansion)
+vector&lt;string&gt; node_status = {"Available", "Occupied", "Under Construction", "Available", "Restricted"};
+
+void dfs(int m[10][10], int v, int source) {
+    visited[source] = 1;
+
+    for (int i = 0; i &lt; v; i++) {
+        if (m[source][i] == 1 && visited[i] == 0) {
+            // Check constraints for expansion
+            if (node_status[i] == "Available") {
+                cout &lt;&lt; "Expanding to node " &lt;&lt; i &lt;&lt; " (Status: " &lt;&lt; node_status[i] &lt;&lt; ")\n";
+                dfs(m, v, i);
+            } else {
+                cout &lt;&lt; "Node " &lt;&lt; i &lt;&lt; " cannot be expanded (Status: " &lt;&lt; node_status[i] &lt;&lt; ")\n";
+            }
+        }
+    }
+}
+
+int main() {
+    int source;
+    // Initialize visited array to 0
+    for (int i = 0; i &lt; v; i++)
+        visited[i] = 0;
+
+    // Prompt user to enter the source vertex
+    cout &lt;&lt; "Enter the source vertex for city expansion: ";
+    cin &gt;&gt; source;
+
+    cout &lt;&lt; "Simulating city expansion...\n";
+    cout &lt;&lt; "Starting from node " &lt;&lt; source &lt;&lt; "...\n";
+    dfs(m, v, source);
+
+    return 0;
+}
+    </pre>
+</div>
+
+</body>
+</html>
